@@ -55,31 +55,31 @@
    TOKENS — Dark + Blue Theme
 ============================================================ */
 :root{
-  --bg:        #050810;
-  --bg-2:      #070a14;
-  --bg-card:   #0a0d1a;
-  --bg-card-2: #0d1120;
+  --bg:        #080e1a;
+  --bg-2:      #0d1525;
+  --bg-card:   #101c30;
+  --bg-card-2: #0f1a2e;
 
-  --surface:   rgba(255,255,255,0.03);
-  --surface-2: rgba(255,255,255,0.055);
+  --surface:   rgba(56,139,253,0.06);
+  --surface-2: rgba(56,139,253,0.11);
 
-  --border:    rgba(59,130,246,0.12);
-  --border-2:  rgba(59,130,246,0.25);
-  --border-3:  rgba(59,130,246,0.50);
+  --border:    rgba(56,139,253,0.12);
+  --border-2:  rgba(56,139,253,0.28);
+  --border-3:  rgba(56,139,253,0.55);
 
-  --text:      #eef2ff;
-  --text-muted:#6b7a99;
-  --text-faint:#2d3555;
+  --text:      #e8f0fe;
+  --text-muted:#7a92b8;
+  --text-faint:#3a5070;
 
   --blue:       #3b82f6;
   --blue-mid:   #60a5fa;
-  --blue-dim:   #1d4ed8;
-  --blue-deep:  #0d1a3a;
-  --blue-soft:  rgba(59,130,246,0.10);
-  --blue-glow:  rgba(59,130,246,0.28);
+  --blue-dim:   #2563eb;
+  --blue-deep:  #93c5fd;
+  --blue-soft:  rgba(59,130,246,0.12);
+  --blue-glow:  rgba(59,130,246,0.30);
   --blue-glow2: rgba(59,130,246,0.50);
-  --blue-bright:#7dd3fc;
-  --ink:        #02050f;
+  --blue-bright:#38bdf8;
+  --ink:        #ffffff;
 
   --accent:     #818cf8;
   --accent-2:   #a78bfa;
@@ -93,6 +93,10 @@
 
   --container:1280px;
   --r-xl:22px; --r-lg:16px; --r-md:12px; --r-sm:8px;
+
+  --shadow-sm: 0 4px 20px -4px rgba(0,0,0,0.40);
+  --shadow-md: 0 16px 40px -12px rgba(0,0,0,0.55);
+  --shadow-lg: 0 24px 60px -14px rgba(0,0,0,0.65);
 }
 
 /* ============================================================ RESET */
@@ -106,38 +110,39 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 input,textarea{font-family:inherit;font-size:1rem;color:var(--text);background:transparent;}
 h1,h2,h3,h4{font-family:var(--font-display);margin:0;font-weight:700;letter-spacing:-0.02em;}
 p{margin:0;}
-::selection{background:var(--blue-soft);color:var(--text);}
+::selection{background:rgba(59,130,246,0.35);color:#e8f0fe;}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px;}
 
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--blue-deep);border-radius:10px;}
+::-webkit-scrollbar-thumb{background:var(--border-3);border-radius:10px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--blue-dim);}
 
 .container{max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,60px);}
 
 /* ============================================================ GRAIN */
-.grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0.02;mix-blend-mode:overlay;
+.grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0.035;mix-blend-mode:screen;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
 /* ============================================================ CURSOR GLOW */
 .cursor-glow{position:fixed;top:0;left:0;width:500px;height:500px;margin:-250px 0 0 -250px;border-radius:50%;
   background:radial-gradient(circle,var(--blue-glow) 0%,transparent 70%);
   pointer-events:none;z-index:1;opacity:0;transition:opacity .4s var(--ease);filter:blur(8px);will-change:transform;}
-.cursor-glow.active{opacity:0.5;}
+.cursor-glow.active{opacity:0.35;}
 @media(max-width:880px),(hover:none){.cursor-glow{display:none;}}
 
 /* ============================================================ NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;
-  transition:padding .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent;}
-.nav.scrolled{padding:13px 0;background:rgba(5,8,16,0.85);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);}
+  transition:padding .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);border-bottom:1px solid transparent;}
+.nav.scrolled{padding:13px 0;background:rgba(8,14,26,0.88);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);}
 .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
-.nav__logo{font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:-0.02em;display:flex;align-items:center;gap:2px;}
-.nav__logo .dot{color:var(--blue);font-size:1.6rem;line-height:.7;}
+.nav__logo{font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:-0.02em;display:flex;align-items:center;gap:0;}
+.nav__logo .syntax{color:var(--blue-mid);font-weight:700;}
+.nav__logo .name{color:var(--text);font-weight:800;}
 .nav__logo .acc{background:linear-gradient(135deg,var(--blue),var(--blue-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
-.nav__links{display:flex;align-items:center;gap:32px;font-size:0.87rem;color:#fff;}
-.nav__links a{position:relative;padding:4px 0;font-weight:500;transition:color .3s;}
+.nav__links{display:flex;align-items:center;gap:32px;font-size:0.87rem;color:var(--text);}
+.nav__links a{position:relative;padding:4px 0;font-weight:500;transition:color .3s;color:var(--text-muted);}
 .nav__links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;
   background:linear-gradient(90deg,var(--blue),var(--blue-bright));transition:width .35s var(--ease);border-radius:2px;}
 .nav__links a:hover{color:var(--text);}
@@ -149,12 +154,12 @@ p{margin:0;}
 .nav__toggle[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg);}
 .nav__toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg);}
 
-.mob{position:fixed;inset:0;z-index:90;background:rgba(5,8,16,.97);backdrop-filter:blur(14px);
+.mob{position:fixed;inset:0;z-index:90;background:rgba(8,14,26,.97);backdrop-filter:blur(14px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;
   transform:translateX(100%);transition:transform .5s var(--ease);}
 .mob.open{transform:translateX(0);}
 .mob ul{display:flex;flex-direction:column;gap:20px;text-align:center;}
-.mob a{font-family:var(--font-display);font-size:2.2rem;font-weight:700;transition:color .3s;}
+.mob a{font-family:var(--font-display);font-size:2.2rem;font-weight:700;transition:color .3s;color:var(--text);}
 .mob a:hover{color:var(--blue);}
 .mob__socials{display:flex;gap:16px;}
 
@@ -164,14 +169,14 @@ p{margin:0;}
   transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
 .btn svg{width:15px;height:15px;flex-shrink:0;transition:transform .3s var(--ease);}
 .btn--primary{background:linear-gradient(135deg,#3b82f6 0%,#1d4ed8 60%,#1e3a8a 100%);color:#fff;font-weight:700;
-  box-shadow:0 0 0 0 var(--blue-glow);}
-.btn--primary:hover{box-shadow:0 8px 32px -4px var(--blue-glow2);transform:translateY(-2px);}
+  box-shadow:0 10px 26px -8px var(--blue-glow2);}
+.btn--primary:hover{box-shadow:0 14px 34px -6px var(--blue-glow2);transform:translateY(-2px);}
 .btn--primary:hover svg{transform:translate(2px,-2px);}
-.btn--outline{background:rgba(59,130,246,0.06);border:1px solid var(--border-2);color:var(--text);backdrop-filter:blur(8px);}
-.btn--outline:hover{border-color:var(--border-3);background:var(--blue-soft);transform:translateY(-2px);}
+.btn--outline{background:var(--blue-soft);border:1px solid var(--border-2);color:var(--blue-deep);backdrop-filter:blur(8px);}
+.btn--outline:hover{border-color:var(--border-3);background:rgba(37,99,235,0.12);transform:translateY(-2px);}
 .btn--outline:hover svg{transform:translateY(2px);}
 .btn--ghost{border:1px solid var(--border-2);font-size:0.85rem;padding:10px 22px;color:var(--text-muted);border-radius:100px;transition:all .3s;}
-.btn--ghost:hover{border-color:var(--blue);color:var(--text);background:var(--blue-soft);}
+.btn--ghost:hover{border-color:var(--blue);color:var(--blue-deep);background:var(--blue-soft);}
 
 /* ============================================================ REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease-soft),transform .85s var(--ease-soft);}
@@ -188,31 +193,31 @@ p{margin:0;}
 
 /* ============================================================ EYEBROW */
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.74rem;
-  letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:14px;}
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
 .eyebrow__line{width:26px;height:1px;background:linear-gradient(90deg,var(--blue),transparent);}
 .dot-live{width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0;
   animation:pulse 2.2s infinite;}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(59,130,246,.7);}70%{box-shadow:0 0 0 10px rgba(59,130,246,0);}100%{box-shadow:0 0 0 0 rgba(59,130,246,0);}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,.55);}70%{box-shadow:0 0 0 10px rgba(37,99,235,0);}100%{box-shadow:0 0 0 0 rgba(37,99,235,0);}}
 
 /* ============================================================ GLASS CARD */
 .card{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);
-  backdrop-filter:blur(16px);overflow:hidden;
-  transition:border-color .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease);}
+  overflow:hidden;box-shadow:var(--shadow-sm);
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease);}
 .card::before{content:'';position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(59,130,246,0.10),transparent 65%);
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(37,99,235,0.06),transparent 65%);
   opacity:0;transition:opacity .5s;pointer-events:none;}
 .card:hover::before{opacity:1;}
-.card:hover{border-color:var(--border-2);background:var(--bg-card-2);box-shadow:0 16px 50px -8px rgba(0,0,0,.7),0 0 0 1px var(--border);}
+.card:hover{border-color:var(--border-2);box-shadow:var(--shadow-md);}
 
 /* ============================================================ SECTION */
 .section{position:relative;padding:120px 0;overflow:hidden;}
 .section__head{max-width:640px;margin-bottom:64px;position:relative;z-index:1;}
-.section__sub{color:#c5d8ff;margin-top:14px;font-size:1rem;line-height:1.8;max-width:520px;}
+.section__sub{color:var(--text-muted);margin-top:14px;font-size:1rem;line-height:1.8;max-width:520px;}
 
-.amb{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(80px);opacity:.3;}
-.amb-tl{width:700px;height:700px;top:-250px;left:-250px;background:radial-gradient(circle,var(--blue-deep) 0%,transparent 70%);}
-.amb-tr{width:600px;height:600px;top:5%;right:-250px;background:radial-gradient(circle,rgba(13,26,58,.6) 0%,transparent 70%);}
-.amb-ct{width:800px;height:800px;bottom:-300px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,var(--blue-deep) 0%,transparent 68%);}
+.amb{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(90px);opacity:.35;}
+.amb-tl{width:700px;height:700px;top:-250px;left:-250px;background:radial-gradient(circle,rgba(37,99,235,0.14) 0%,transparent 70%);}
+.amb-tr{width:600px;height:600px;top:5%;right:-250px;background:radial-gradient(circle,rgba(99,102,241,0.10) 0%,transparent 70%);}
+.amb-ct{width:800px;height:800px;bottom:-300px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 68%);}
 
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-2),transparent);}
 
@@ -229,28 +234,28 @@ p{margin:0;}
   background:linear-gradient(135deg,var(--blue),var(--blue-bright));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-.skills-left p{color:#fff;font-size:0.96rem;line-height:1.85;max-width:380px;margin-top:18px;}
+.skills-left p{color:var(--text-muted);font-size:0.96rem;line-height:1.85;max-width:380px;margin-top:18px;}
 
 .skill-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
 .skill-tag{
   font-family:var(--font-mono);font-size:0.74rem;letter-spacing:0.04em;
   padding:7px 16px;border-radius:100px;
-  border:1px solid var(--border-2);color:var(--blue-mid);
-  background:rgba(59,130,246,0.06);
+  border:1px solid var(--border-2);color:var(--blue-deep);
+  background:var(--blue-soft);
   transition:background .3s,border-color .3s,transform .3s,box-shadow .3s;
   cursor:default;
 }
 .skill-tag:hover{
-  background:rgba(59,130,246,0.14);border-color:var(--border-3);
+  background:rgba(37,99,235,0.14);border-color:var(--border-3);
   transform:translateY(-2px);box-shadow:0 4px 12px -4px var(--blue-glow);
 }
 
 .skill-bars{display:flex;flex-direction:column;gap:22px;}
 .skill-bar__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .skill-bar__name{font-family:var(--font-mono);font-size:0.78rem;color:var(--text);letter-spacing:.04em;}
-.skill-bar__pct{font-family:var(--font-mono);font-size:0.74rem;color:var(--blue-mid);}
+.skill-bar__pct{font-family:var(--font-mono);font-size:0.74rem;color:var(--blue);}
 .skill-bar__track{
-  height:4px;background:rgba(255,255,255,0.05);border-radius:100px;overflow:hidden;
+  height:4px;background:rgba(59,130,246,0.12);border-radius:100px;overflow:hidden;
 }
 .skill-bar__fill{
   height:100%;width:0;border-radius:100px;
@@ -258,7 +263,6 @@ p{margin:0;}
   box-shadow:0 0 8px var(--blue-glow);
   transition:width 1.2s cubic-bezier(0.16,1,0.3,1);
 }
-.skill-bar__fill.loaded{}
 
 @media(max-width:800px){.skills-inner{grid-template-columns:1fr;gap:44px;}}
 
@@ -274,11 +278,11 @@ p{margin:0;}
 .hero__bg{
   position:absolute;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 55% 65% at 50% 15%, rgba(13,26,58,0.70) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 45% at 50% 100%, rgba(29,78,216,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 65% at 50% 15%, rgba(59,130,246,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 45% at 50% 100%, rgba(37,99,235,0.12) 0%, transparent 60%),
     var(--bg);
 }
-.hero__canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:.85;}
+.hero__canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:.6;}
 
 /* 3-col grid */
 .hero__body{
@@ -305,9 +309,7 @@ p{margin:0;}
   display:block;
   background:linear-gradient(135deg,var(--blue) 0%,var(--blue-bright) 50%,var(--accent) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:grad-shift 6s ease-in-out infinite alternate;
 }
-@keyframes grad-shift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(20deg) brightness(1.15);}}
 
 .hero__role-line{
   display:flex;align-items:center;gap:12px;
@@ -315,11 +317,11 @@ p{margin:0;}
 }
 .hero__role-line::before{content:'';width:30px;height:1px;background:var(--blue-dim);}
 .hero__role-chip{
-  display:inline-block;color:var(--blue-mid);font-size:0.82rem;font-family:var(--font-mono);
+  display:inline-block;color:var(--blue-deep);font-size:0.82rem;font-family:var(--font-mono);
   font-weight:500;letter-spacing:0.04em;
 }
 
-.hero__desc{color:#fff;font-size:0.96rem;line-height:1.85;max-width:380px;}
+.hero__desc{color:var(--text-muted);font-size:0.96rem;line-height:1.85;max-width:380px;}
 
 .hero__btns{display:flex;gap:12px;flex-wrap:wrap;}
 
@@ -327,16 +329,16 @@ p{margin:0;}
 .hero__avatars{display:flex;}
 .hero__avatars span{
   width:34px;height:34px;border-radius:50%;border:2px solid var(--bg);
-  background:linear-gradient(135deg,var(--blue-deep),var(--blue-dim));
+  background:linear-gradient(135deg,var(--blue-dim),var(--blue-mid));
   margin-right:-9px;display:flex;align-items:center;justify-content:center;
-  font-size:0.62rem;font-weight:700;color:var(--blue-bright);flex-shrink:0;
+  font-size:0.62rem;font-weight:700;color:#fff;flex-shrink:0;
 }
 .hero__trusted-text{font-size:0.8rem;color:var(--text-muted);line-height:1.3;}
 .hero__trusted-text strong{display:block;color:var(--text);font-size:0.82rem;}
 
 .hero__socials{display:flex;gap:10px;margin-top:4px;}
 .hero__social{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;color:var(--text-muted);
+  display:flex;align-items:center;justify-content:center;color:var(--text-muted);background:var(--bg-card);
   transition:border-color .3s,color .3s,background .3s,transform .3s;}
 .hero__social svg{width:15px;height:15px;}
 .hero__social:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft);transform:translateY(-3px);}
@@ -349,11 +351,11 @@ p{margin:0;}
   display:flex;align-items:center;gap:9px;
   padding:10px 16px;
   border-radius:100px;
-  background:rgba(10,13,26,0.75);
+  background:rgba(13,21,37,0.90);
   backdrop-filter:blur(14px);
   border:1px solid var(--border-2);
-  font-family:var(--font-mono);font-size:0.72rem;white-space:nowrap;
-  box-shadow:0 8px 32px -8px rgba(0,0,0,.6);
+  font-family:var(--font-mono);font-size:0.72rem;white-space:nowrap;color:var(--text);
+  box-shadow:var(--shadow-md);
   animation:badge-float 3s ease-in-out infinite;
 }
 @keyframes badge-float{
@@ -362,7 +364,7 @@ p{margin:0;}
 }
 .hero__badge--avail{
   top:60px;right:-20px;
-  color:var(--blue-mid);
+  color:var(--blue-deep);
 }
 .hero__badge--exp{
   bottom:100px;left:-28px;
@@ -374,14 +376,14 @@ p{margin:0;}
   background:var(--blue);animation:pulse 2.2s infinite;
 }
 .hero__badge-dot--green{
-  background:#34d399;
-  box-shadow:0 0 0 0 rgba(52,211,153,0);
+  background:#22c55e;
+  box-shadow:0 0 0 0 rgba(34,197,94,0);
   animation:pulse-green 2.2s infinite;
 }
 @keyframes pulse-green{
-  0%{box-shadow:0 0 0 0 rgba(52,211,153,.7);}
-  70%{box-shadow:0 0 0 8px rgba(52,211,153,0);}
-  100%{box-shadow:0 0 0 0 rgba(52,211,153,0);}
+  0%{box-shadow:0 0 0 0 rgba(34,197,94,.6);}
+  70%{box-shadow:0 0 0 8px rgba(34,197,94,0);}
+  100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}
 }
 .hero__badge-icon{font-size:1rem;}
 
@@ -399,19 +401,19 @@ p{margin:0;}
 .hero__photo-glow{
   position:absolute;bottom:0;left:50%;transform:translateX(-50%);
   width:320px;height:460px;
-  background:radial-gradient(ellipse 80% 100% at 50% 80%,rgba(59,130,246,0.22) 0%,rgba(59,130,246,0.06) 50%,transparent 75%);
+  background:radial-gradient(ellipse 80% 100% at 50% 80%,rgba(37,99,235,0.16) 0%,rgba(37,99,235,0.05) 50%,transparent 75%);
   filter:blur(28px);z-index:0;pointer-events:none;
 }
 .hero__photo-ring{
   position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
   width:300px;height:60px;
-  background:radial-gradient(ellipse,rgba(59,130,246,0.30) 0%,transparent 70%);
+  background:radial-gradient(ellipse,rgba(37,99,235,0.22) 0%,transparent 70%);
   filter:blur(18px);z-index:0;
 }
 .hero__photo-placeholder{
   position:relative;z-index:1;
   width:300px;height:460px;
-  background:linear-gradient(175deg,#0c1225 0%,#060b18 100%);
+  background:linear-gradient(175deg,#0d1a2e 0%,#0a1422 100%);
   border-radius:var(--r-xl) var(--r-xl) 0 0;
   border:1px solid var(--border);
   border-bottom:none;
@@ -427,10 +429,10 @@ p{margin:0;}
 }
 .hero__photo-placeholder::after{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(59,130,246,0.18) 0%,transparent 70%);
+  background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(37,99,235,0.10) 0%,transparent 70%);
 }
 .hero__photo-label{
-  font-family:var(--font-mono);font-size:0.7rem;color:var(--blue-mid);letter-spacing:0.1em;
+  font-family:var(--font-mono);font-size:0.7rem;color:var(--blue-deep);letter-spacing:0.1em;
   position:relative;z-index:1;text-align:center;line-height:1.5;
 }
 .hero__photo-img{
@@ -439,7 +441,7 @@ p{margin:0;}
   border-radius:var(--r-xl) var(--r-xl) 0 0;
   object-fit:cover;object-position:top center;
   display:block;
-  filter:drop-shadow(0 30px 60px rgba(0,0,0,.9));
+  filter:drop-shadow(0 20px 40px rgba(15,27,51,.18));
 }
 
 /* RIGHT — stats */
@@ -451,9 +453,7 @@ p{margin:0;}
 .hero__stat{text-align:right;}
 .hero__stat-num{
   font-family:var(--font-display);font-weight:800;font-size:clamp(2.4rem,4vw,3.2rem);
-  line-height:1;
-  background:linear-gradient(135deg,var(--text),rgba(238,242,255,.65));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1;color:var(--text);
 }
 .hero__stat-plus{
   font-family:var(--font-display);font-weight:800;font-size:1.3rem;
@@ -473,8 +473,8 @@ p{margin:0;}
 .hero__tools{display:flex;gap:10px;justify-content:flex-end;margin-top:6px;}
 .hero__tool{
   width:40px;height:40px;border-radius:var(--r-sm);border:1px solid var(--border);
-  background:var(--surface);display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-mono);font-size:0.63rem;color:var(--blue-mid);letter-spacing:.04em;
+  background:var(--bg-card);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:0.63rem;color:var(--blue-deep);letter-spacing:.04em;
   transition:border-color .3s,background .3s,transform .3s;
 }
 .hero__tool:hover{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-2px);}
@@ -484,7 +484,7 @@ p{margin:0;}
   position:relative;z-index:2;
   border-top:1px solid var(--border);
   padding:28px 0;
-  background:rgba(5,8,16,0.6);backdrop-filter:blur(12px);
+  background:rgba(8,14,26,0.75);backdrop-filter:blur(12px);
 }
 .hero__bottom-inner{
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
@@ -496,12 +496,12 @@ p{margin:0;}
     letter-spacing: 0.05em;
     padding: 5px 13px;
     border-radius: 100px;
-    border: 1px solid rgb(255 255 255 / 94%);
-    color: #ffffff;
-    background: rgba(59, 130, 246, 0.03);
-    transition: border-color .3s, color .3s;
+    border: 1px solid var(--border-2);
+    color: var(--blue-deep);
+    background: var(--blue-soft);
+    transition: border-color .3s, color .3s, background .3s;
 }
-.tech-pill:hover{border-color:var(--border-2);color:var(--text-muted);}
+.tech-pill:hover{border-color:var(--border-3);color:var(--blue);background:rgba(37,99,235,0.12);}
 .hero__scroll{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.72rem;color:var(--text-faint);}
 .scroll-line{width:1px;height:36px;background:var(--border);position:relative;overflow:hidden;}
 .scroll-line span{position:absolute;top:-100%;left:0;width:100%;height:60%;
@@ -532,7 +532,7 @@ p{margin:0;}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 .services-intro__right{display:flex;flex-direction:column;align-items:flex-end;gap:18px;}
-.services-intro__right p{color:#fff;font-size:0.95rem;line-height:1.8;text-align:right;max-width:340px;}
+.services-intro__right p{color:var(--text-muted);font-size:0.95rem;line-height:1.8;text-align:right;max-width:340px;}
 
 .services-grid{
   position:relative;z-index:1;
@@ -542,28 +542,28 @@ p{margin:0;}
   padding:34px 28px;display:flex;flex-direction:column;gap:16px;
   cursor:default;
   border-radius:var(--r-xl);background:var(--bg-card);border:1px solid var(--border);
-  position:relative;overflow:hidden;
-  transition:border-color .4s var(--ease),background .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease);
+  position:relative;overflow:hidden;box-shadow:var(--shadow-sm);
+  transition:border-color .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease);
 }
 .srv-card::before{content:'';position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(59,130,246,0.10),transparent 65%);
+  background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(37,99,235,0.07),transparent 65%);
   opacity:0;transition:opacity .5s;pointer-events:none;}
 .srv-card:hover::before{opacity:1;}
-.srv-card:hover{border-color:var(--border-2);background:var(--bg-card-2);
-  transform:translateY(-7px);box-shadow:0 28px 60px -12px rgba(0,0,0,.7),0 0 0 1px var(--border),0 0 30px -10px var(--blue-glow);}
+.srv-card:hover{border-color:var(--border-2);
+  transform:translateY(-7px);box-shadow:var(--shadow-lg);}
 
 .srv-icon{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(99,102,241,0.06));border:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(37,99,235,0.12),rgba(99,102,241,0.08));border:1px solid var(--border);
   color:var(--blue);transition:transform .4s var(--ease),box-shadow .4s var(--ease);}
 .srv-icon svg{width:24px;height:24px;}
 .srv-card:hover .srv-icon{transform:scale(1.1) rotate(-4deg);box-shadow:0 0 24px -4px var(--blue-glow);}
 
 .srv-card h3{font-size:1.1rem;color:var(--text);}
-.srv-card p{color:#bac6df;font-size:0.88rem;line-height:1.75;flex:1;}
+.srv-card p{color:var(--text-muted);font-size:0.88rem;line-height:1.75;flex:1;}
 .srv-read{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.76rem;
-  color:#85adff;margin-top:4px;transition:color .3s;letter-spacing:.04em;}
+  color:var(--blue);margin-top:4px;transition:color .3s;letter-spacing:.04em;}
 .srv-read svg{width:12px;height:12px;transition:transform .3s var(--ease);}
-.srv-card:hover .srv-read{color:var(--blue);}
+.srv-card:hover .srv-read{color:var(--blue-dim);}
 .srv-card:hover .srv-read svg{transform:translate(4px,0);}
 
 @media(max-width:860px){.services-grid{grid-template-columns:repeat(2,1fr);}}
@@ -583,82 +583,241 @@ p{margin:0;}
 .tl-item{position:relative;margin-bottom:20px;}
 .tl-item:last-child{margin-bottom:0;}
 .tl-node{position:absolute;left:-28px;top:28px;width:9px;height:9px;border-radius:50%;
-  background:linear-gradient(135deg,var(--blue),var(--blue-bright));box-shadow:0 0 0 4px rgba(59,130,246,.15);
+  background:linear-gradient(135deg,var(--blue),var(--blue-bright));box-shadow:0 0 0 4px rgba(37,99,235,.15);
   transition:box-shadow .3s;}
-.tl-item:hover .tl-node{box-shadow:0 0 0 8px rgba(59,130,246,.20),0 0 16px var(--blue-glow);}
+.tl-item:hover .tl-node{box-shadow:0 0 0 8px rgba(37,99,235,.16),0 0 16px var(--blue-glow);}
 .tl-content{padding:22px 24px;}
-.tl-date{font-family:var(--font-mono);font-size:0.72rem;color:var(--blue-mid);letter-spacing:.04em;margin-bottom:7px;}
-.tl-content h4{font-size:1rem;margin-bottom:3px;}
+.tl-date{font-family:var(--font-mono);font-size:0.72rem;color:var(--blue);letter-spacing:.04em;margin-bottom:7px;}
+.tl-content h4{font-size:1rem;margin-bottom:3px;color:var(--text);}
 .tl-org{color:var(--text-muted);font-size:0.84rem;margin-bottom:9px;font-weight:500;}
-.tl-content p{color:#c5d8ff;font-size:0.88rem;line-height:1.7;}
+.tl-content p{color:var(--text-muted);font-size:0.88rem;line-height:1.7;}
 
 @media(max-width:800px){.exp-grid{grid-template-columns:1fr;gap:50px;}}
 
 /* ============================================================
-   PROJECTS
+   PROJECTS — simplified 3-column layout
 ============================================================ */
-.projects-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.projects-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
 .proj{position:relative;border-radius:var(--r-xl);border:1px solid var(--border);
-  overflow:hidden;display:flex;flex-direction:column;background:var(--bg-card);
-  transition:border-color .4s var(--ease),transform .3s var(--ease),box-shadow .4s var(--ease);}
-.proj::before{content:'';position:absolute;inset:0;z-index:0;border-radius:inherit;
-  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(59,130,246,0.08),transparent 65%);
-  opacity:0;transition:opacity .5s;pointer-events:none;}
-.proj:hover::before{opacity:1;}
-.proj:hover{border-color:var(--border-2);transform:translateY(-5px);box-shadow:0 24px 60px -12px rgba(0,0,0,.7),0 0 0 1px var(--border),0 0 30px -15px var(--blue-glow);}
-.proj--lg{grid-column:1/3;}
-.proj__media{position:relative;aspect-ratio:16/7;overflow:hidden;}
-.proj--lg .proj__media{aspect-ratio:16/8;}
-.proj__media-bg{position:absolute;inset:0;transition:transform .7s var(--ease-soft);}
-.proj:hover .proj__media-bg{transform:scale(1.04);}
-.proj__num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-family:var(--font-display);font-weight:800;font-size:8rem;line-height:1;
-  color:rgba(255,255,255,.018);white-space:nowrap;user-select:none;pointer-events:none;
-  transition:color .7s var(--ease-soft),transform .7s var(--ease-soft);}
-.proj:hover .proj__num{color:rgba(59,130,246,.08);transform:translate(-50%,-50%) scale(1.08);}
-.proj__glow{position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(59,130,246,0.08),transparent 55%);pointer-events:none;}
-.proj__idx{position:relative;z-index:1;font-family:var(--font-mono);font-size:0.74rem;color:var(--text-muted);
-  border:1px solid var(--border);padding:4px 10px;border-radius:100px;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);}
-.proj__media-inner{position:absolute;bottom:0;left:0;padding:20px;z-index:1;}
-.proj__body{padding:20px 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex:1;position:relative;z-index:1;}
-.proj__meta h3{font-size:1.15rem;margin-bottom:5px;transition:color .3s;}
-.proj:hover .proj__meta h3{color:var(--blue-mid);}
-.proj__meta p{color:#c5d8ff;font-size:0.86rem;}
-.proj__link{display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:0.76rem;
-  color:var(--text-muted);white-space:nowrap;flex-shrink:0;transition:color .3s;}
+  overflow:hidden;display:flex;flex-direction:column;background:var(--bg-card);box-shadow:var(--shadow-sm);
+  transition:border-color .35s var(--ease),transform .3s var(--ease),box-shadow .35s var(--ease);}
+.proj:hover{border-color:var(--border-2);transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.proj__media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--bg-2);}
+.proj__media-bg{position:absolute;inset:0;transition:transform .6s var(--ease-soft);}
+.proj:hover .proj__media-bg{transform:scale(1.05);}
+.proj__image{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s var(--ease-soft);}
+.proj:hover .proj__image{transform:scale(1.05);}
+.proj__tag{position:absolute;top:14px;left:14px;z-index:1;font-family:var(--font-mono);font-size:0.68rem;
+  color:var(--blue-deep);border:1px solid var(--border-2);padding:5px 12px;border-radius:100px;
+  background:rgba(8,14,26,.85);backdrop-filter:blur(6px);letter-spacing:.03em;}
+.proj__body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.proj__meta h3{font-size:1.08rem;margin-bottom:6px;color:var(--text);transition:color .3s;}
+.proj:hover .proj__meta h3{color:var(--blue-dim);}
+.proj__meta p{color:var(--text-muted);font-size:0.86rem;line-height:1.65;}
+.proj__link{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:0.76rem;
+  color:var(--blue);white-space:nowrap;transition:color .3s;margin-top:auto;}
 .proj__link svg{width:13px;height:13px;transition:transform .3s var(--ease);}
-.proj:hover .proj__link{color:var(--blue);}
+.proj:hover .proj__link{color:var(--blue-dim);}
 .proj:hover .proj__link svg{transform:translate(3px,-3px);}
 
-.p1 .proj__media-bg{background:linear-gradient(150deg,#080d20 0%,#040810 65%);}
-.p2 .proj__media-bg{background:linear-gradient(150deg,#071018 0%,#040810 65%);}
-.p3 .proj__media-bg{background:linear-gradient(150deg,#050c1e 0%,#030710 65%);}
-.p4 .proj__media-bg{background:linear-gradient(150deg,#080f22 0%,#050910 65%);}
-.p5 .proj__media-bg{background:linear-gradient(150deg,#060b1c 0%,#040810 65%);}
+@media(max-width:960px){.projects-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.projects-grid{grid-template-columns:1fr;}}
 
-@media(max-width:760px){.projects-grid{grid-template-columns:1fr;}.proj--lg{grid-column:1/2;}.proj__num{font-size:5rem;}}
-@media(max-width:480px){.proj__body{flex-direction:column;align-items:flex-start;gap:10px;}}
+.projects-more{
+    display:flex;
+    justify-content:center;
+    margin-top:52px;
+}
+.projects-more .btn{
+    padding:16px 38px;
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:.02em;
+}
+.projects-more .btn:hover{
+    transform:translateY(-4px) scale(1.02);
+}
+.projects-more .btn svg{
+    width:18px;
+    height:18px;
+}
+
+/* ============================================================
+   CASE STUDIES — accordion with thumbnail
+============================================================ */
+.case-list{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;}
+.case-item{padding:0;}
+.case-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;text-align:left;padding:16px 20px;}
+.case-q__left{display:flex;align-items:center;gap:16px;min-width:0;}
+.case-q__img{width:64px;height:64px;border-radius:var(--r-md);object-fit:cover;flex-shrink:0;border:1px solid var(--border);background:var(--bg-2);}
+.case-q__text{display:flex;flex-direction:column;gap:6px;min-width:0;}
+.case-q__text h3{font-size:1.02rem;color:var(--text);}
+.case-q__tag{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:.05em;color:var(--blue-deep);
+  border:1px solid var(--border-2);padding:3px 10px;border-radius:100px;background:var(--blue-soft);width:fit-content;}
+.case-q__icon{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:transform .35s var(--ease),background .3s,border-color .3s;color:var(--blue);}
+.case-q__icon svg{width:15px;height:15px;transition:transform .35s var(--ease);}
+.case-item.open .case-q__icon{background:var(--blue-soft);border-color:var(--blue);}
+.case-item.open .case-q__icon svg{transform:rotate(45deg);}
+
+.case-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-soft);}
+.case-a__inner{padding:4px 24px 28px;}
+
+.case-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px;}
+.case-block h4{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--blue);margin-bottom:8px;}
+.case-block p{color:var(--text-muted);font-size:0.87rem;line-height:1.75;}
+
+.case-tech{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;}
+.case-tech span{font-family:var(--font-mono);font-size:0.68rem;color:var(--blue-deep);
+  border:1px solid var(--border-2);padding:4px 11px;border-radius:100px;background:var(--blue-soft);}
+
+.case-features h4{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--blue);margin-bottom:10px;}
+.case-features__grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-bottom:20px;}
+.case-features__grid ul{display:flex;flex-direction:column;gap:8px;}
+.case-features__grid li{position:relative;padding-left:16px;color:var(--text-muted);font-size:0.85rem;line-height:1.6;}
+.case-features__grid li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--blue);}
+
+.case-impact{padding:18px 20px;border-radius:var(--r-md);background:var(--blue-soft);border-left:3px solid var(--blue);}
+.case-impact h4{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--blue-deep);margin-bottom:8px;font-weight:700;}
+.case-impact p{color:var(--text);font-size:0.88rem;line-height:1.75;font-weight:500;}
+
+@media(max-width:760px){
+  .case-cols{grid-template-columns:1fr;gap:16px;}
+  .case-features__grid{grid-template-columns:1fr;}
+  .case-q__text h3{font-size:0.92rem;}
+  .case-q__img{width:52px;height:52px;}
+}
 
 /* ============================================================
    CONTACT
 ============================================================ */
 .contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start;}
-.contact__intro p{color:#c5d8ff;font-size:0.98rem;max-width:420px;margin-top:14px;line-height:1.8;}
+.contact__intro p{color:var(--text-muted);font-size:0.98rem;max-width:420px;margin-top:14px;line-height:1.8;}
 .contact__email{display:inline-block;margin-top:24px;font-family:var(--font-display);font-weight:700;font-size:1.25rem;
-  border-bottom:1px solid var(--border-2);padding-bottom:5px;transition:color .3s,border-color .3s;}
+  border-bottom:1px solid var(--border-2);padding-bottom:5px;transition:color .3s,border-color .3s;color:var(--text);}
 .contact__email:hover{color:var(--blue);border-color:var(--blue);}
 .contact__link{display:flex;align-items:center;gap:9px;margin-top:10px;color:var(--text-muted);font-size:0.92rem;transition:color .3s;}
-.contact__link:hover{color:var(--blue-mid);}
+.contact__link:hover{color:var(--blue-dim);}
 .socials{display:flex;gap:10px;margin-top:32px;}
 .social{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--border);transition:border-color .35s,background .35s,color .35s,transform .35s,box-shadow .35s;}
+  border:1px solid var(--border);background:var(--bg-card);color:var(--text-muted);
+  transition:border-color .35s,background .35s,color .35s,transform .35s,box-shadow .35s;}
 .social svg{width:16px;height:16px;}
 .social:hover{border-color:var(--blue);background:var(--blue-soft);color:var(--blue);transform:translateY(-3px);box-shadow:0 8px 18px -4px var(--blue-glow);}
 
+/* ============================================================
+   BRAND SOCIAL & CONTACT COLORS
+============================================================ */
+/* WhatsApp */
+.social--wa,
+.contact__link--wa {
+  color: #25D366 !important;
+}
+.social--wa svg,
+.contact__link--wa svg {
+  color: #25D366;
+  fill: currentColor;
+  filter: drop-shadow(0 0 5px rgba(37, 211, 102, 0.4));
+}
+.contact__link--wa:hover {
+  color: #25D366 !important;
+  text-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
+}
+.social--wa {
+  border-color: rgba(37, 211, 102, 0.35) !important;
+  background: rgba(37, 211, 102, 0.10) !important;
+  box-shadow: 0 0 12px -2px rgba(37, 211, 102, 0.25);
+}
+.social--wa:hover {
+  color: #ffffff !important;
+  border-color: #25D366 !important;
+  background: #25D366 !important;
+  box-shadow: 0 8px 24px -4px rgba(37, 211, 102, 0.6) !important;
+  transform: translateY(-3px);
+}
+.social--wa:hover svg {
+  color: #ffffff;
+  filter: none;
+}
+
+/* GitHub */
+.social--github {
+  color: #e6edf3 !important;
+  border-color: rgba(230, 237, 243, 0.3) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 0 12px -2px rgba(255, 255, 255, 0.15);
+}
+.social--github:hover {
+  color: #0d1117 !important;
+  border-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 0 8px 24px -4px rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-3px);
+}
+
+/* LinkedIn */
+.social--linkedin {
+  color: #0a66c2 !important;
+  border-color: rgba(10, 102, 194, 0.35) !important;
+  background: rgba(10, 102, 194, 0.12) !important;
+  box-shadow: 0 0 12px -2px rgba(10, 102, 194, 0.25);
+}
+.social--linkedin:hover {
+  color: #ffffff !important;
+  border-color: #0a66c2 !important;
+  background: #0a66c2 !important;
+  box-shadow: 0 8px 24px -4px rgba(10, 102, 194, 0.6) !important;
+  transform: translateY(-3px);
+}
+
+/* Instagram */
+.social--instagram {
+  color: #e4405f !important;
+  border-color: rgba(228, 64, 95, 0.35) !important;
+  background: rgba(228, 64, 95, 0.12) !important;
+  box-shadow: 0 0 12px -2px rgba(228, 64, 95, 0.25);
+}
+.social--instagram:hover {
+  color: #ffffff !important;
+  border-color: #e4405f !important;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  box-shadow: 0 8px 24px -4px rgba(228, 64, 95, 0.6) !important;
+  transform: translateY(-3px);
+}
+
+/* X (Twitter) */
+.social--x {
+  color: #1da1f2 !important;
+  border-color: rgba(29, 161, 242, 0.35) !important;
+  background: rgba(29, 161, 242, 0.12) !important;
+  box-shadow: 0 0 12px -2px rgba(29, 161, 242, 0.25);
+}
+.social--x:hover {
+  color: #ffffff !important;
+  border-color: #1da1f2 !important;
+  background: #1da1f2 !important;
+  box-shadow: 0 8px 24px -4px rgba(29, 161, 242, 0.6) !important;
+  transform: translateY(-3px);
+}
+
+/* Phone link */
+.contact__link--phone {
+  color: #e8f0fe;
+}
+.contact__link--phone svg {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.4));
+}
+.contact__link--phone:hover {
+  color: #38bdf8 !important;
+}
+
 .contact__form{padding:36px;display:flex;flex-direction:column;gap:22px;}
 .field{display:flex;flex-direction:column;gap:7px;}
-.field label{font-family:var(--font-mono);font-size:0.72rem;color:#fff;text-transform:uppercase;letter-spacing:.08em;}
-.field input,.field textarea{border:none;border-bottom:1px solid var(--border);padding:9px 2px;resize:vertical;transition:border-color .3s;}
+.field label{font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;}
+.field input,.field textarea{border:none;border-bottom:1px solid var(--border-2);padding:9px 2px;resize:vertical;transition:border-color .3s;color:var(--text);background:transparent;}
 .field input:focus,.field textarea:focus{border-color:var(--blue);outline:none;}
 .field input::placeholder,.field textarea::placeholder{color:var(--text-faint);}
 .contact__form .btn{justify-content:center;margin-top:4px;}
@@ -669,30 +828,6 @@ p{margin:0;}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media(max-width:480px){.field-row{grid-template-columns:1fr;}}
 
-.projects-more{
-    display:flex;
-    justify-content:center;
-    margin-top:60px;
-}
-
-.projects-more .btn{
-    padding:16px 38px;
-    font-size:.95rem;
-    font-weight:700;
-    letter-spacing:.02em;
-    box-shadow:0 15px 40px rgba(59,130,246,.18);
-}
-
-.projects-more .btn:hover{
-    transform:translateY(-4px) scale(1.02);
-    box-shadow:0 20px 55px rgba(59,130,246,.35);
-}
-
-.projects-more .btn svg{
-    width:18px;
-    height:18px;
-}
-
 @media(max-width:800px){.contact-grid{grid-template-columns:1fr;gap:44px;}}
 
 /* ============================================================
@@ -700,14 +835,14 @@ p{margin:0;}
 ============================================================ */
 .footer{padding:32px 0;border-top:1px solid var(--border);}
 .footer__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.footer__inner p{font-family:var(--font-mono);font-size:0.74rem;color:#bcc6ed;}
-.footer__inner a{color:var(--blue-mid);transition:color .3s;}
-.footer__inner a:hover{color:var(--blue);}
-.btt{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
+.footer__inner p{font-family:var(--font-mono);font-size:0.74rem;color:var(--text-muted);}
+.footer__inner a{color:var(--blue);transition:color .3s;}
+.footer__inner a:hover{color:var(--blue-dim);}
+.btt{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);
+  display:flex;align-items:center;justify-content:center;color:var(--text-muted);
   transition:border-color .3s,background .3s,transform .3s,box-shadow .3s;}
 .btt svg{width:14px;height:14px;}
-.btt:hover{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-3px);box-shadow:0 8px 18px -4px var(--blue-glow);}
+.btt:hover{border-color:var(--blue);background:var(--blue-soft);color:var(--blue);transform:translateY(-3px);box-shadow:0 8px 18px -4px var(--blue-glow);}
 
 /* ============================================================
    WHATSAPP FLOATING BUTTON
@@ -717,12 +852,12 @@ p{margin:0;}
   width:58px;height:58px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   background:linear-gradient(135deg,#25D366,#1ebe5b);
-  box-shadow:0 10px 30px -6px rgba(37,211,102,.55),0 0 0 1px rgba(255,255,255,.06);
+  box-shadow:0 10px 30px -6px rgba(37,211,102,.45),0 0 0 1px rgba(255,255,255,.5);
   transition:transform .3s var(--ease),box-shadow .3s var(--ease);
   animation:wa-pop 2.6s ease-in-out infinite;
 }
 .wa-float svg{width:28px;height:28px;color:#fff;}
-.wa-float:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 16px 36px -6px rgba(37,211,102,.7);}
+.wa-float:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 16px 36px -6px rgba(37,211,102,.6);}
 @keyframes wa-pop{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
 .wa-float__ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.4);animation:wa-ring 2.2s ease-out infinite;}
 @keyframes wa-ring{0%{transform:scale(.85);opacity:.9;}100%{transform:scale(1.35);opacity:0;}}
@@ -733,51 +868,28 @@ p{margin:0;}
 ============================================================ */
 .trust-strip{position:relative;padding:56px 0;border-bottom:1px solid var(--border);}
 .trust-strip__label{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:.14em;text-transform:uppercase;
-  color:#d7e3fd;text-align:center;margin-bottom:30px;}
+  color:var(--text-muted);text-align:center;margin-bottom:30px;}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:1;}
 .trust-card{padding:22px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;
   border-radius:var(--r-lg);}
-.trust-card svg{width:26px;height:26px;color:var(--blue-mid);}
-.trust-card span{font-family:var(--font-mono);font-size:0.78rem;color:#c7d8ff;letter-spacing:.02em;}
+.trust-card svg{width:26px;height:26px;color:var(--blue);}
+.trust-card span{font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);letter-spacing:.02em;}
 @media(max-width:820px){.trust-grid{grid-template-columns:repeat(2,1fr);}}
 
 /* ============================================================
    ABOUT
 ============================================================ */
 .about-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.about-copy p{color:#c5d8ff;font-size:0.98rem;line-height:1.9;margin-bottom:18px;max-width:480px;}
+.about-copy p{color:var(--text-muted);font-size:0.98rem;line-height:1.9;margin-bottom:18px;max-width:480px;}
 .about-copy p:last-child{margin-bottom:0;}
 .about-points{display:flex;flex-direction:column;gap:16px;}
 .about-point{display:flex;gap:14px;padding:18px 20px;align-items:flex-start;}
 .about-point__icon{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(59,130,246,0.1);border:1px solid var(--border);color:var(--blue-mid);}
+  background:var(--blue-soft);border:1px solid var(--border);color:var(--blue);}
 .about-point__icon svg{width:16px;height:16px;}
-.about-point h4{font-size:0.92rem;margin-bottom:4px;}
-.about-point p{color:#bac6df;font-size:0.84rem;line-height:1.65;}
+.about-point h4{font-size:0.92rem;margin-bottom:4px;color:var(--text);}
+.about-point p{color:var(--text-muted);font-size:0.84rem;line-height:1.65;}
 @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:40px;}}
-
-/* ============================================================
-   CASE STUDIES
-============================================================ */
-.case-list{position:relative;z-index:1;display:flex;flex-direction:column;gap:20px;}
-.case-card{padding:0;overflow:hidden;}
-.case-card__inner{display:grid;grid-template-columns:220px 1fr;}
-.case-card__side{padding:32px 26px;background:linear-gradient(160deg,rgba(59,130,246,0.08),rgba(59,130,246,0.02));
-  border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between;gap:20px;}
-.case-card__tag{font-family:var(--font-mono);font-size:0.7rem;color:var(--blue-mid);letter-spacing:.08em;
-  border:1px solid var(--border-2);padding:4px 10px;border-radius:100px;display:inline-block;width:fit-content;}
-.case-card__side h3{font-size:1.2rem;line-height:1.3;}
-.case-card__body{padding:30px 32px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.case-block h4{font-family:var(--font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--blue-mid);margin-bottom:8px;}
-.case-block p{color:#c5d8ff;font-size:0.87rem;line-height:1.75;}
-.case-block--result{grid-column:1/3;padding-top:18px;border-top:1px solid var(--border);}
-.case-block--result p{color:var(--text);font-weight:500;}
-.case-tech{display:flex;flex-wrap:wrap;gap:7px;grid-column:1/3;}
-.case-tech span{font-family:var(--font-mono);font-size:0.68rem;color:var(--blue-mid);
-  border:1px solid var(--border-2);padding:3px 10px;border-radius:100px;background:rgba(59,130,246,0.05);}
-@media(max-width:800px){.case-card__inner{grid-template-columns:1fr;}.case-card__side{border-right:none;border-bottom:1px solid var(--border);}
-  .case-card__body{grid-template-columns:1fr;}.case-block--result{grid-column:1/2;}.case-tech{grid-column:1/2;}}
 
 /* ============================================================
    PROCESS
@@ -787,8 +899,8 @@ p{margin:0;}
 .process-num{font-family:var(--font-display);font-weight:800;font-size:2.6rem;
   background:linear-gradient(135deg,var(--blue),var(--blue-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
   line-height:1;margin-bottom:14px;}
-.process-card h3{font-size:1rem;margin-bottom:8px;}
-.process-card p{color:#bac6df;font-size:0.85rem;line-height:1.7;}
+.process-card h3{font-size:1rem;margin-bottom:8px;color:var(--text);}
+.process-card p{color:var(--text-muted);font-size:0.85rem;line-height:1.7;}
 .process-arrow{position:absolute;top:36px;right:-27px;color:var(--border-3);z-index:2;}
 .process-arrow svg{width:20px;height:20px;}
 @media(max-width:900px){.process-grid{grid-template-columns:repeat(2,1fr);}.process-arrow{display:none;}}
@@ -800,10 +912,10 @@ p{margin:0;}
 .why-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
 .why-card{padding:30px 26px;display:flex;flex-direction:column;gap:14px;}
 .why-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;
-  background:rgba(59,130,246,0.1);border:1px solid var(--border);color:var(--blue-mid);}
+  background:var(--blue-soft);border:1px solid var(--border);color:var(--blue);}
 .why-icon svg{width:22px;height:22px;}
-.why-card h3{font-size:1.02rem;}
-.why-card p{color:#bac6df;font-size:0.86rem;line-height:1.75;}
+.why-card h3{font-size:1.02rem;color:var(--text);}
+.why-card p{color:var(--text-muted);font-size:0.86rem;line-height:1.75;}
 @media(max-width:860px){.why-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:560px){.why-grid{grid-template-columns:1fr;}}
 
@@ -814,10 +926,10 @@ p{margin:0;}
 .testi-card{padding:28px 26px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
 .testi-card--placeholder{align-items:center;text-align:center;justify-content:center;gap:14px;border-style:dashed;border-color:var(--border-2);}
 .testi-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;
-  background:rgba(59,130,246,0.1);border:1px solid var(--border);color:var(--blue-mid);flex-shrink:0;}
+  background:var(--blue-soft);border:1px solid var(--border);color:var(--blue);flex-shrink:0;}
 .testi-icon svg{width:20px;height:20px;}
-.testi-card h3{font-size:0.98rem;}
-.testi-card p{color:#bac6df;font-size:0.85rem;line-height:1.75;}
+.testi-card h3{font-size:0.98rem;color:var(--text);}
+.testi-card p{color:var(--text-muted);font-size:0.85rem;line-height:1.75;}
 @media(max-width:860px){.testi-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:560px){.testi-grid{grid-template-columns:1fr;}}
 
@@ -828,13 +940,128 @@ p{margin:0;}
 .faq-item{overflow:hidden;}
 .faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;width:100%;text-align:left;}
 .faq-q h3{font-size:0.98rem;font-weight:600;color:var(--text);}
-.faq-q__icon{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s var(--ease),background .3s;}
+.faq-q__icon{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s var(--ease),background .3s;color:var(--blue);}
 .faq-q__icon svg{width:14px;height:14px;transition:transform .35s var(--ease);}
 .faq-item.open .faq-q__icon{background:var(--blue-soft);border-color:var(--blue);}
 .faq-item.open .faq-q__icon svg{transform:rotate(45deg);}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease-soft);}
-.faq-a__inner{padding:0 26px 24px;color:#bac6df;font-size:0.88rem;line-height:1.8;}
+.faq-a__inner{padding:0 26px 24px;color:var(--text-muted);font-size:0.88rem;line-height:1.8;}
 
+/* ============================================================
+   CASE STUDIES — view-more & full-page panel
+============================================================ */
+.case-item--extra{display:none;}
+
+.case-viewmore{display:flex;justify-content:center;margin-top:40px;}
+.case-viewmore__btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:15px 36px;border-radius:100px;
+  background:linear-gradient(135deg,var(--blue-dim) 0%,var(--blue) 60%,var(--blue-bright) 100%);
+  color:#fff;font-family:var(--font-display);font-weight:700;font-size:0.92rem;
+  letter-spacing:0.02em;cursor:pointer;border:none;
+  box-shadow:0 10px 30px -8px var(--blue-glow2);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+  position:relative;overflow:hidden;
+}
+.case-viewmore__btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.08),transparent);
+  border-radius:inherit;
+}
+.case-viewmore__btn:hover{transform:translateY(-3px);box-shadow:0 16px 40px -8px var(--blue-glow2);}
+.case-viewmore__btn svg{width:18px;height:18px;transition:transform .3s var(--ease);}
+.case-viewmore__btn:hover svg{transform:translate(3px,0);}
+.case-viewmore__count{
+  font-family:var(--font-mono);font-size:0.72rem;letter-spacing:.06em;
+  background:rgba(255,255,255,0.18);border-radius:100px;padding:3px 10px;
+}
+
+/* ---- Full-page Case Studies Panel ---- */
+.cs-panel{
+  position:fixed;inset:0;z-index:500;
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .6s var(--ease);
+  background:var(--bg);
+  overflow:hidden;
+}
+.cs-panel.open{transform:translateX(0);}
+
+.cs-panel__header{
+  position:sticky;top:0;z-index:10;
+  background:rgba(8,14,26,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:18px 0;flex-shrink:0;
+}
+.cs-panel__header-inner{
+  max-width:var(--container);margin:0 auto;
+  padding:0 clamp(20px,5vw,60px);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.cs-panel__title{
+  font-family:var(--font-display);font-weight:800;font-size:1.15rem;
+  letter-spacing:-0.02em;color:var(--text);
+  display:flex;align-items:center;gap:12px;
+}
+.cs-panel__title-accent{
+  background:linear-gradient(135deg,var(--blue),var(--blue-bright));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cs-panel__badge{
+  font-family:var(--font-mono);font-size:0.7rem;letter-spacing:.06em;
+  background:var(--blue-soft);border:1px solid var(--border-2);
+  color:var(--blue-mid);padding:4px 12px;border-radius:100px;
+}
+
+.cs-panel__close{
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--border-2);background:var(--bg-card);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);cursor:pointer;
+  transition:border-color .3s,background .3s,color .3s,transform .3s;
+  flex-shrink:0;
+}
+.cs-panel__close svg{width:18px;height:18px;}
+.cs-panel__close:hover{border-color:var(--blue);background:var(--blue-soft);color:var(--blue);transform:rotate(90deg);}
+
+.cs-panel__body{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;
+  padding:56px 0 80px;
+}
+.cs-panel__body::-webkit-scrollbar{width:4px;}
+.cs-panel__body::-webkit-scrollbar-track{background:transparent;}
+.cs-panel__body::-webkit-scrollbar-thumb{background:var(--border-3);border-radius:10px;}
+
+.cs-panel__intro{
+  max-width:680px;margin-bottom:52px;
+}
+.cs-panel__intro h2{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(2rem,4vw,3rem);line-height:1.05;letter-spacing:-0.04em;
+  margin-bottom:14px;
+}
+.cs-panel__intro h2 span{
+  background:linear-gradient(135deg,var(--blue),var(--blue-bright));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cs-panel__intro p{
+  color:var(--text-muted);font-size:0.96rem;line-height:1.8;
+}
+
+.cs-panel__grid{
+  display:grid;grid-template-columns:1fr;gap:14px;
+}
+
+/* ---- Panel overlay backdrop ---- */
+.cs-panel-backdrop{
+  position:fixed;inset:0;z-index:499;
+  background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;
+  transition:opacity .5s;
+}
+.cs-panel-backdrop.open{opacity:1;pointer-events:all;}
+
+/* ---- Responsive ---- */
 /* ============================================================
    RESPONSIVE
 ============================================================ */
@@ -862,36 +1089,6 @@ p{margin:0;}
   .hero__right{flex-direction:column;gap:20px;}
   .contact-grid{grid-template-columns:1fr;}
   .process-grid,.why-grid,.testi-grid{grid-template-columns:1fr;}
-}
-
-.nav__logo{
-    font-family:var(--font-display);
-    font-weight:800;
-    font-size:1.15rem;
-    letter-spacing:-0.02em;
-    display:flex;
-    align-items:center;
-    gap:0;
-}
-
-.syntax{
-    color:var(--blue-mid);
-    font-weight:700;
-}
-
-.name{
-    color:var(--text);
-    font-weight:800;
-}
-
-.acc{
-    background:linear-gradient(
-        135deg,
-        var(--blue),
-        var(--blue-bright)
-    );
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
 }
 </style>
 </head>
@@ -942,8 +1139,11 @@ p{margin:0;}
     <li><a href="#contact" class="ml">Contact</a></li>
   </ul>
   <div class="mob__socials">
-    <a href="https://github.com/Anandhu1028" class="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4-1 4-4.5a3.5 3.5 0 0 0-1-2.5 3.3 3.3 0 0 0-.1-2.5s-1.2-.4-2.9 1a9.9 9.9 0 0 0-5 0c-1.7-1.4-2.9-1-2.9-1a3.3 3.3 0 0 0-.1 2.5 3.5 3.5 0 0 0-1 2.5c0 3.4 2 4.3 4 4.5-.6.6-.6 1.2-.5 2V21"/></svg></a>
-    <a href="#" class="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1.5 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg></a>
+    <a href="https://wa.me/919746327402" class="social social--wa" aria-label="WhatsApp" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.4 0 0 5.4 0 12.04c0 2.12.55 4.18 1.6 6L0 24l6.13-1.57a11.98 11.98 0 0 0 5.91 1.51h.01C18.68 23.94 24 18.62 24 12.04c0-3.22-1.25-6.25-3.48-8.56zM12.05 21.9h-.01a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.64.93.97-3.55-.24-.37a9.88 9.88 0 0 1-1.52-5.28C2.21 6.58 6.59 2.2 12.04 2.2c2.64 0 5.12 1.03 6.99 2.9a9.81 9.81 0 0 1 2.89 6.94c0 5.45-4.43 9.86-9.87 9.86zm5.42-7.37c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.69.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg></a>
+    <a href="https://github.com/Anandhu1028" class="social social--github" aria-label="GitHub" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4-1 4-4.5a3.5 3.5 0 0 0-1-2.5 3.3 3.3 0 0 0-.1-2.5s-1.2-.4-2.9 1a9.9 9.9 0 0 0-5 0c-1.7-1.4-2.9-1-2.9-1a3.3 3.3 0 0 0-.1 2.5 3.5 3.5 0 0 0-1 2.5c0 3.4 2 4.3 4 4.5-.6.6-.6 1.2-.5 2V21"/></svg></a>
+    <a href="https://www.linkedin.com/in/anandhu-a-s-b002a5232" class="social social--linkedin" aria-label="LinkedIn" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1.5 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg></a>
+    <a href="#" class="social social--instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+    <a href="#" class="social social--x" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
   </div>
 </div>
 
@@ -968,7 +1168,7 @@ p{margin:0;}
       </h1>
 
       <div class="hero__role-line reveal">
-        <span class="hero__role-chip">Custom CRM, ERP &amp; Business Automation Developer</span>
+        <span class="hero__role-chip">Custom Modern + Premium Websites , CRM, ERP &amp; Business Automation Developer</span>
       </div>
 
       <p class="hero__desc reveal">
@@ -986,27 +1186,22 @@ p{margin:0;}
         </a>
       </div>
 
-      <div class="hero__trusted reveal">
-        <div class="hero__avatars">
-          <span>JK</span><span>AM</span><span>SR</span><span>+</span>
-        </div>
-        <div class="hero__trusted-text">
-          <strong>Trusted by 14+ Clients</strong>
-          Kochi · India · Remote Worldwide
-        </div>
-      </div>
+      
 
       <div class="hero__socials reveal">
-        <a href="https://github.com/Anandhu1028" class="hero__social" aria-label="GitHub">
+        <a href="https://wa.me/919746327402" class="hero__social social social--wa" aria-label="WhatsApp" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.4 0 0 5.4 0 12.04c0 2.12.55 4.18 1.6 6L0 24l6.13-1.57a11.98 11.98 0 0 0 5.91 1.51h.01C18.68 23.94 24 18.62 24 12.04c0-3.22-1.25-6.25-3.48-8.56zM12.05 21.9h-.01a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.64.93.97-3.55-.24-.37a9.88 9.88 0 0 1-1.52-5.28C2.21 6.58 6.59 2.2 12.04 2.2c2.64 0 5.12 1.03 6.99 2.9a9.81 9.81 0 0 1 2.89 6.94c0 5.45-4.43 9.86-9.87 9.86zm5.42-7.37c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.69.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+        </a>
+        <a href="https://github.com/Anandhu1028" class="hero__social social social--github" aria-label="GitHub" target="_blank">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4-1 4-4.5a3.5 3.5 0 0 0-1-2.5 3.3 3.3 0 0 0-.1-2.5s-1.2-.4-2.9 1a9.9 9.9 0 0 0-5 0c-1.7-1.4-2.9-1-2.9-1a3.3 3.3 0 0 0-.1 2.5 3.5 3.5 0 0 0-1 2.5c0 3.4 2 4.3 4 4.5-.6.6-.6 1.2-.5 2V21"/></svg>
         </a>
-        <a href="linkedin.com/in/anandhu-a-s-b002a5232" class="hero__social" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/anandhu-a-s-b002a5232" class="hero__social social social--linkedin" aria-label="LinkedIn" target="_blank">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1.5 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg>
         </a>
-        <a href="#" class="hero__social" aria-label="Instagram">
+        <a href="#" class="hero__social social social--instagram" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
-        <a href="#" class="hero__social" aria-label="X (Twitter)">
+        <a href="#" class="hero__social social social--x" aria-label="X (Twitter)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4 4 20"/></svg>
         </a>
       </div>
@@ -1023,13 +1218,11 @@ p{margin:0;}
           <img src="YOUR_PHOTO.jpg" alt="Anandhu A S" class="hero__photo-img">
           ══════════════════════════════════════════════════
         -->
-        <!-- Floating badge: Available -->  
         <div class="hero__badge hero__badge--avail">
           <span class="hero__badge-dot hero__badge-dot--green"></span>
           Available for hire
         </div>
 
-        <!-- Floating badge: Experience -->
         <div class="hero__badge hero__badge--exp">
           <span class="hero__badge-icon">⚡</span>
           2+ yrs · Full-Stack
@@ -1138,7 +1331,7 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>About Me</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">A developer who</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">thinks like an owner</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">thinks like an owner</span>
       </h2>
     </div>
 
@@ -1190,7 +1383,6 @@ p{margin:0;}
   <div class="container">
     <div class="skills-inner">
 
-      <!-- Left: heading + tag cloud -->
       <div class="skills-left">
         <h2 class="tr">
           <span class="tr__w">Skills &amp;</span>
@@ -1214,7 +1406,6 @@ p{margin:0;}
         </div>
       </div>
 
-      <!-- Right: animated bars -->
       <div class="skill-bars reveal" id="skill-bars">
         <div class="skill-bar" data-pct="95">
           <div class="skill-bar__head">
@@ -1261,7 +1452,7 @@ p{margin:0;}
         <p class="eyebrow reveal"><span class="eyebrow__line"></span>My Services</p>
         <h2 class="tr">
           <span class="tr__w" style="transition-delay:0ms">WHAT I'M</span><br>
-          <span class="tr__w accent" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">OFFERING</span>
+          <span class="tr__w accent" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">OFFERING</span>
         </h2>
       </div>
       <div class="services-intro__right">
@@ -1408,252 +1599,162 @@ p{margin:0;}
 
 <div class="divider"></div>
 
-<!-- ===== PROJECTS ===== -->
+<!-- ===== PROJECTS (simplified 3-col grid) ===== -->
 <section class="section" id="work">
   <div class="container">
     <div class="section__head">
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>Selected Work</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">Projects that</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">shipped</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">shipped</span>
       </h2>
       <p class="section__sub reveal">Real products built, launched, and maintained — spanning CRM platforms, ERP systems, and business automation software.</p>
     </div>
+
     <div class="projects-grid">
-      <!-- 02 -->
-    <a href="#case-studies" class="proj p2 reveal">
+
+      <a href="#case-studies" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/Screenshot 2026-07-22 140454.png" alt="Student Management System" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">02</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">02 / Student ERP</span>
-            </div>
+          <img src="assets/images/projects/Screenshot 2026-07-22 140454.png" alt="Lead Management CRM" class="proj__image">
+          <span class="proj__tag">CRM</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Student Management System</h3>
-                <p>
-                    Complete student lifecycle management with admissions,
-                    course management, payments, invoices, welcome emails,
-                    document uploads and role-based dashboards.
-                </p>
-            </div>
-
-            <span class="proj__link">
-                View Case Study
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17 17 7M8 7h9v9"/>
-                </svg>
-            </span>
+          <div class="proj__meta">
+            <h3>Lead Management CRM</h3>
+            <p>Full lead lifecycle management with rule-based stage progression, call recording, AI call summaries, and executive performance tracking.</p>
+          </div>
+          <span class="proj__link">View Case Study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 03 -->
-    <a href="#case-studies" class="proj p3 reveal">
+      <a href="#case-studies" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/student-portal.jpg" alt="Student Portal" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">03</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">03 / Student Portal</span>
-            </div>
+          <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_16_24 AM.png" alt="Education ERP & Student Management System" class="proj__image">
+          <span class="proj__tag">Education ERP</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Student Self-Service Portal</h3>
-                <p>
-                    Secure portal where students can manage profiles,
-                    payments, documents, schedules, receipts and track
-                    admission progress.
-                </p>
-            </div>
-
-            <span class="proj__link">
-                View Case Study
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17 17 7M8 7h9v9"/>
-                </svg>
-            </span>
+          <div class="proj__meta">
+            <h3>Education ERP &amp; Student Management</h3>
+            <p>Manages the full student admission lifecycle — registration, verification, payments, invoices, and reporting.</p>
+          </div>
+          <span class="proj__link">View Case Study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 04 -->
-    <a href="#case-studies" class="proj p4 reveal">
+      <a href="#case-studies" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/crm-portal.jpg" alt="CRM Portal" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">04</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">04 / Enterprise CRM</span>
-            </div>
+          <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_21_09 AM.png" alt="Enterprise Education ERP" class="proj__image">
+          <span class="proj__tag">Enterprise ERP</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Enterprise CRM Portal</h3>
-                <p>
-                    Multi-branch CRM with university management, students,
-                    payments, task management, instance creation, reports,
-                    user permissions and workflow automation.
-                </p>
-            </div>
-
-            <span class="proj__link">
-                View Case Study
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17 17 7M8 7h9v9"/>
-                </svg>
-            </span>
+          <div class="proj__meta">
+            <h3>Enterprise Education ERP</h3>
+            <p>Advanced reporting, target analytics, task management, and multi-branch dashboards for large institutions.</p>
+          </div>
+          <span class="proj__link">View Case Study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 05 -->
-    <a href="#work" class="proj p5 reveal">
+      <a href="#work" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/lubricant-company.jpg" alt="Lubricant Company Website" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">05</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">05 / Corporate Website</span>
-            </div>
+          <img src="assets/images/projects/lubricant-company.jpg" alt="Lubricant Company Website" class="proj__image">
+          <span class="proj__tag">Corporate Website</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Lubricant Manufacturing Company</h3>
-                <p>
-                    Premium corporate website showcasing industrial products,
-                    manufacturing capabilities, dealer network and enquiry
-                    management.
-                </p>
-            </div>
-
-            <span class="proj__link">
-                View Project
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17 17 7M8 7h9v9"/>
-                </svg>
-            </span>
+          <div class="proj__meta">
+            <h3>Lubricant Manufacturing Company</h3>
+            <p>Premium corporate website showcasing industrial products, capabilities, and dealer network enquiries.</p>
+          </div>
+          <span class="proj__link">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 06 -->
-    <a href="#work" class="proj reveal">
+      <a href="#work" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/medical-ecommerce.jpg" alt="Medical Equipment Store" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">06</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">06 / Medical Commerce</span>
-            </div>
+          <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_27_14 AM.png" alt="Medical Equipment E-Commerce" class="proj__image">
+          <span class="proj__tag">Medical E-Commerce</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Medical Equipment E-Commerce</h3>
-                <p>
-                    Complete online marketplace for medical equipment with
-                    inventory, orders, payments, quotations and delivery
-                    management.
-                </p>
-            </div>
-
-            <span class="proj__link">View Project</span>
+          <div class="proj__meta">
+            <h3>Medical Equipment E-Commerce Platform</h3>
+            <p>Responsive marketplace with QR code product access, ordering, and instant booking.</p>
+          </div>
+          <span class="proj__link">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 07 -->
-    <a href="#work" class="proj reveal">
+      <a href="#work" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/ecommerce.jpg" alt="E-Commerce Platform" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">07</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">07 / E-Commerce</span>
-            </div>
+          <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_30_04 AM.png" alt="E-Commerce Platform" class="proj__image">
+          <span class="proj__tag">E-Commerce</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Modern E-Commerce Platform</h3>
-                <p>
-                    Full-featured online shopping platform with product
-                    management, secure checkout, order tracking and admin
-                    dashboard.
-                </p>
-            </div>
-
-            <span class="proj__link">View Project</span>
+          <div class="proj__meta">
+            <h3>Modern E-Commerce Platform</h3>
+            <p>Full-featured online shopping platform with checkout, order tracking, and an admin dashboard.</p>
+          </div>
+          <span class="proj__link">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 08 -->
-    <a href="#work" class="proj reveal">
+      <a href="#work" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/construction.jpg" alt="Construction Management" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">08</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">08 / Construction ERP</span>
-            </div>
+          <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_36_31 AM.png" alt="Construction Management System" class="proj__image">
+          <span class="proj__tag">Construction Management</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Construction Management System</h3>
-                <p>
-                    Project planning, contractor management, material tracking,
-                    billing, workforce management and project reporting.
-                </p>
-            </div>
-
-            <span class="proj__link">View Project</span>
+          <div class="proj__meta">
+            <h3>Construction Management System</h3>
+            <p>End-to-end construction ERP with GPS attendance, expense tracking, and live progress reporting.</p>
+          </div>
+          <span class="proj__link">View Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
 
-    <!-- 09 -->
-    <a href="#case-studies" class="proj reveal">
+      <a href="#case-studies" class="proj reveal">
         <div class="proj__media">
-            <img src="assets/images/projects/executive-performance.jpg" alt="Executive Performance System" class="proj__image">
-            <div class="proj__overlay"></div>
-            <span class="proj__num">09</span>
-            <div class="proj__media-inner">
-                <span class="proj__idx">09 / Performance Management</span>
-            </div>
+          <img src="assets/images/projects/ChatGPT Image Jul 23, 2026, 05_01_02 PM.png" alt="Executive Performance System" class="proj__image">
+          <span class="proj__tag">Performance Management</span>
         </div>
-
         <div class="proj__body">
-            <div class="proj__meta">
-                <h3>Executive Performance Management</h3>
-                <p>
-                    KPI-based executive scoring platform with rewards,
-                    penalties, recovery engine, leaderboards, analytics and
-                    role-based dashboards.
-                </p>
-            </div>
-            <span class="proj__link">View Case Study</span>
+          <div class="proj__meta">
+            <h3>Executive Performance Management</h3>
+            <p>KPI-based scoring platform with rewards, penalties, leaderboards, and role-based dashboards.</p>
+          </div>
+          <span class="proj__link">View Case Study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
         </div>
-    </a>
+      </a>
+
     </div>
+
     <div class="projects-more reveal">
-    <a href="#contact" class="btn btn--primary magnetic">
+      <a href="#contact" class="btn btn--primary magnetic">
         Discuss a Project Like This
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 17 17 7M8 7h9v9"/>
-        </svg>
-    </a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
     </div>
   </div>
-  
 </section>
 
 <div class="divider"></div>
 
-<!-- ===== CASE STUDIES ===== -->
+<!-- ===== CASE STUDIES (accordion) ===== -->
 <section class="section" id="case-studies">
   <div class="amb amb-tl" aria-hidden="true"></div>
   <div class="container">
@@ -1661,164 +1762,305 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>Case Studies</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">Problems solved,</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">results delivered</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">results delivered</span>
       </h2>
-      <p class="section__sub reveal">A closer look at the problem, the build, and the outcome for four representative projects.</p>
+      <p class="section__sub reveal">A closer look at the problem, the build, and the outcome for seven representative projects. Tap any project to expand.</p>
     </div>
 
     <div class="case-list">
 
-      <!-- TIMS CRM -->
-     <div class="case-card card reveal">
-    <div class="case-card__inner">
-
-        <div class="case-card__side">
-            <span class="case-card__tag">CRM</span>
-            <h3>TIMS CRM — Student Management System</h3>
-        </div>
-
-        <div class="case-card__body">
-
-            <div class="case-block">
+      <!-- Lead Management CRM -->
+      <div class="case-item card reveal open">
+        <button class="case-q" aria-expanded="true">
+          <div class="case-q__left">
+            <img src="assets/images/projects/Screenshot 2026-07-22 140454.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>Lead Management CRM</h3>
+              <span class="case-q__tag">CRM</span>
+            </div>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
                 <h4>Problem</h4>
-                <p>
-                    The organization managed leads, student admissions, course enrollments,
-                    payments, accounting, invoices, offer letters, and follow-ups across
-                    spreadsheets, WhatsApp, and multiple disconnected tools. This resulted
-                    in duplicated data, delayed follow-ups, manual reporting, and limited
-                    visibility into business operations.
-                </p>
-            </div>
-
-            <div class="case-block">
+                <p>Sales teams tracked leads across spreadsheets and WhatsApp, with no clear ownership, follow-up history, or conversion visibility — resulting in slow responses and lost deals.</p>
+              </div>
+              <div class="case-block">
                 <h4>Solution</h4>
-                <p>
-                    Developed a complete Laravel-based Education ERP and CRM that manages
-                    the entire student lifecycle—from lead generation to admission,
-                    course enrollment, payment collection, accounting, document management,
-                    invoice generation, offer letter automation, notifications,
-                    executive performance tracking, reporting, and role-based access control.
-                    The system also integrates call recordings, AI-powered call summaries,
-                    WhatsApp automation, and advanced analytics dashboards.
-                </p>
+                <p>A Laravel CRM covering the full lead lifecycle, with rule-based stage progression, automatic call recording, AI-generated call summaries, and automatic reassignment of stale leads.</p>
+              </div>
             </div>
-
             <div class="case-tech">
-                <span>Laravel</span>
-                <span>PHP</span>
-                <span>MySQL</span>
-                <span>Bootstrap 5</span>
-                <span>JavaScript</span>
-                <span>AJAX</span>
-               
-                <span>Role &amp; Permissions</span>
-                <span>WhatsApp API</span>
-                
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span>
+              <span>AJAX</span><span>REST API</span><span>AI Call Summary</span><span>RBAC</span>
             </div>
-
-            <div class="case-block case-block--result">
-                <h4>Business Result</h4>
-                <p>
-                    Unified lead management, student administration, course management,
-                    finance, accounting, invoicing, admissions, and reporting into a
-                    single platform. Automated manual workflows, improved operational
-                    efficiency, enabled real-time reporting, and provided management with
-                    complete visibility into admissions, payments, executive performance,
-                    and business growth.
-                </p>
+            <div class="case-features">
+              <h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul>
+                  <li>Lead creation and assignment to executives</li>
+                  <li>Rule-based stage progression (hot, warm, cold)</li>
+                  <li>Full activity timeline and follow-up tracking</li>
+                  <li>Automatic call recording integration</li>
+                </ul>
+                <ul>
+                  <li>AI-powered call summarization</li>
+                  <li>Automatic lead reassignment after 15 days</li>
+                  <li>Role-based permissions</li>
+                  <li>Real-time dashboards and reports</li>
+                </ul>
+              </div>
             </div>
-
+            <div class="case-impact">
+              <h4>Business Impact</h4>
+              <p>Centralized the sales workflow, cut manual follow-up work, and gave managers transparent, real-time visibility into every executive's pipeline.</p>
+            </div>
+          </div>
         </div>
+      </div>
 
-    </div>
-</div>
-
-      <!-- Student Portal -->
-     <div class="case-card card reveal">
-    <div class="case-card__inner">
-
-        <div class="case-card__side">
-            <span class="case-card__tag">Student Management CRM</span>
-            <h3>Student Management System</h3>
-        </div>
-
-        <div class="case-card__body">
-
-            <div class="case-block">
+      <!-- Education ERP -->
+      <div class="case-item card reveal case-item--extra">
+        <button class="case-q" aria-expanded="false">
+          <div class="case-q__left">
+            <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_16_24 AM.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>Student Management &amp; Admission ERP</h3>
+              <span class="case-q__tag">Education ERP</span>
+            </div>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
                 <h4>Problem</h4>
-                <p>
-                    Student admissions, document verification, course enrollment, payment
-                    processing, and academic records were managed through multiple
-                    spreadsheets and manual workflows. Teams struggled to track admission
-                    progress, verify documents, manage balances, generate invoices, and
-                    coordinate between departments.
-                </p>
-            </div>
-
-            <div class="case-block">
+                <p>Admissions, records, documents, enrollments, and payments were managed across spreadsheets and disconnected systems, with duplicate records and delayed approvals.</p>
+              </div>
+              <div class="case-block">
                 <h4>Solution</h4>
-                <p>
-                    Developed a comprehensive Laravel-based Student Management System that
-                    digitizes the complete admission lifecycle. The platform supports student
-                    registration, course enrollment, dynamic fee calculation, payment
-                    management, balance tracking, document uploads and verification,
-                    role-based workflows for BDE, CRE, Accounts, and Administrators,
-                    payment approval and rejection, automatic Track ID generation,
-                    offer letter generation, invoice creation, notifications, and a secure
-                    student portal for accessing personal records and admission status.
-                </p>
+                <p>A complete Laravel Education ERP digitizing the full student lifecycle — registration, document verification, course management, payments, and automated invoice generation.</p>
+              </div>
             </div>
-
             <div class="case-tech">
-                <span>Laravel</span>
-                <span>PHP</span>
-                <span>MySQL</span>
-                <span>Bootstrap 5</span>
-                <span>JavaScript</span>
-                <span>AJAX</span>
-                <span>Role-Based Access</span>
-                <span>PDF Generation</span>
-                
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span>
+              <span>AJAX</span><span>DataTables</span><span>Chart.js</span><span>RBAC</span>
             </div>
-
-            <div class="case-block case-block--result">
-                <h4>Business Result</h4>
-                <p>
-                    Centralized the complete student admission and management process into a
-                    single platform. Automated admission workflows, document verification,
-                    fee calculation, payment approvals, invoice and offer letter generation,
-                    Track ID creation, and role-based collaboration, significantly improving
-                    operational efficiency, reducing manual work, and providing real-time
-                    visibility across admissions, accounts, and student services.
-                </p>
+            <div class="case-features">
+              <h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul>
+                  <li>Student registration and admission workflow</li>
+                  <li>Automatic unique student Track ID generation</li>
+                  <li>Document verification with waiver option</li>
+                  <li>Branch and university management</li>
+                </ul>
+                <ul>
+                  <li>Payment approval and rejection workflow</li>
+                  <li>Automatic invoice and offer letter generation</li>
+                  <li>Dynamic reports with customizable columns</li>
+                  <li>Role-based user and permission management</li>
+                </ul>
+              </div>
             </div>
-
+            <div class="case-impact">
+              <h4>Business Impact</h4>
+              <p>Replaced manual processes with a centralized ERP, automating admissions, payment approvals, and reporting while giving management real-time visibility into operations.</p>
+            </div>
+          </div>
         </div>
+      </div>
 
-    </div>
-</div>
+      <!-- Enterprise Education ERP -->
+      <div class="case-item card reveal case-item--extra">
+        <button class="case-q" aria-expanded="false">
+          <div class="case-q__left">
+            <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_21_09 AM.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>Enterprise Education Management System</h3>
+              <span class="case-q__tag">Enterprise ERP</span>
+            </div>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Large educational organizations needed centralized multi-branch management with detailed reporting, target tracking, and workflow automation existing systems couldn't provide.</p>
+              </div>
+              <div class="case-block">
+                <h4>Solution</h4>
+                <p>An enterprise-grade Laravel ERP extending the student management platform with advanced analytics, actual-vs-target tracking, task management, and workflow automation.</p>
+              </div>
+            </div>
+            <div class="case-tech">
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span>
+              <span>AJAX</span><span>DataTables</span><span>Chart.js</span><span>RBAC</span>
+            </div>
+            <div class="case-features">
+              <h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul>
+                  <li>Multi-branch and multi-university management</li>
+                  <li>User-wise performance reports</li>
+                  <li>Actual vs. target analytics</li>
+                  <li>Dynamic report builder</li>
+                </ul>
+                <ul>
+                  <li>Task management and assignment system</li>
+                  <li>Workflow automation</li>
+                  <li>Real-time executive dashboards</li>
+                  <li>Excel export and business reports</li>
+                </ul>
+              </div>
+            </div>
+            <div class="case-impact">
+              <h4>Business Impact</h4>
+              <p>Enabled centralized management of multiple branches while improving reporting accuracy, target monitoring, and executive visibility into institutional performance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Equipment E-Commerce -->
+      <div class="case-item card reveal case-item--extra">
+        <button class="case-q" aria-expanded="false">
+          <div class="case-q__left">
+            <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_27_14 AM.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>Medical Equipment E-Commerce Platform</h3>
+              <span class="case-q__tag">E-Commerce</span>
+            </div>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Medical equipment suppliers needed a modern online platform to showcase products and simplify purchasing, replacing manual, non-digital ordering methods.</p>
+              </div>
+              <div class="case-block">
+                <h4>Solution</h4>
+                <p>A responsive e-commerce platform with an intuitive catalog, secure ordering workflow, and QR code integration for quick product access and booking.</p>
+              </div>
+            </div>
+            <div class="case-tech">
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span>
+              <span>AJAX</span><span>Responsive Design</span><span>QR Code Integration</span>
+            </div>
+            <div class="case-features">
+              <h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul>
+                  <li>Responsive mobile-first design</li>
+                  <li>Product catalog with search and categories</li>
+                  <li>Online ordering and purchase workflow</li>
+                </ul>
+                <ul>
+                  <li>QR code-based product access and booking</li>
+                  <li>Order tracking and management</li>
+                  <li>Customer account management</li>
+                </ul>
+              </div>
+            </div>
+            <div class="case-impact">
+              <h4>Business Impact</h4>
+              <p>Delivered a user-friendly digital storefront that simplifies purchasing and enhances convenience with QR code-enabled product access and booking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Construction Management System -->
+      <div class="case-item card reveal case-item--extra">
+        <button class="case-q" aria-expanded="false">
+          <div class="case-q__left">
+            <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_36_31 AM.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>Construction Management System</h3>
+              <span class="case-q__tag">ERP</span>
+            </div>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Construction projects were managed through spreadsheets, calls, and manual reports, making it difficult to track progress, expenses, and profitability in real time.</p>
+              </div>
+              <div class="case-block">
+                <h4>Solution</h4>
+                <p>A Construction ERP covering the full project lifecycle — stage planning, GPS-verified attendance, expense management, client portal, and live site monitoring.</p>
+              </div>
+            </div>
+            <div class="case-tech">
+              <span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span>
+              <span>AJAX</span><span>GPS Verification</span><span>Finance Dashboard</span>
+            </div>
+            <div class="case-features">
+              <h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul>
+                  <li>Project and stage management</li>
+                  <li>GPS-based supervisor check-in and attendance</li>
+                  <li>Expense and budget tracking</li>
+                  <li>Client portal with live project status</li>
+                </ul>
+                <ul>
+                  <li>Stage-based payment management</li>
+                  <li>Profit and loss reporting</li>
+                  <li>Live site monitoring</li>
+                  <li>Automated alerts and notifications</li>
+                </ul>
+              </div>
+            </div>
+            <div class="case-impact">
+              <h4>Business Impact</h4>
+              <p>Centralized construction operations into a single platform, improving financial control, supervisor accountability, and client transparency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Executive Performance Management -->
-      <div class="case-card card reveal">
-        <div class="case-card__inner">
-          <div class="case-card__side">
-            <span class="case-card__tag">Performance System</span>
-            <h3>Executive Performance Management</h3>
-          </div>
-          <div class="case-card__body">
-            <div class="case-block">
-              <h4>Problem</h4>
-              <p>Management had no consistent, rule-based way to score executive performance across branches, making incentives and accountability inconsistent.</p>
+      <div class="case-item card reveal">
+        <button class="case-q" aria-expanded="false">
+          <div class="case-q__left">
+            <img src="assets/images/projects/ChatGPT Image Jul 23, 2026, 05_01_02 PM.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>Executive Performance Management</h3>
+              <span class="case-q__tag">Performance System</span>
             </div>
-            <div class="case-block">
-              <h4>Solution</h4>
-              <p>Engineered a dynamic rule engine with configurable point calculation, a leaderboard, and detailed analytics and reporting for every executive.</p>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
+                <h4>Problem</h4>
+                <p>Management had no consistent, rule-based way to score executive performance across branches, making incentives and accountability inconsistent.</p>
+              </div>
+              <div class="case-block">
+                <h4>Solution</h4>
+                <p>A dynamic rule engine with configurable point calculation, a leaderboard, and detailed analytics and reporting for every executive.</p>
+              </div>
             </div>
             <div class="case-tech">
               <span>Laravel</span><span>MySQL</span><span>Rule Engine</span><span>Reporting Systems</span>
             </div>
-            <div class="case-block case-block--result">
-              <h4>Business Result</h4>
+            <div class="case-impact">
+              <h4>Business Impact</h4>
               <p>Gave leadership a transparent, rule-driven view of executive performance with real-time leaderboards instead of manual scorecards.</p>
             </div>
           </div>
@@ -1826,69 +2068,53 @@ p{margin:0;}
       </div>
 
       <!-- AI Call Recording -->
-      <div class="case-card card reveal">
-    <div class="case-card__inner">
-
-        <div class="case-card__side">
-            <span class="case-card__tag">AI &amp; Mobile Integration</span>
-            <h3>AI Call Recording &amp; Lead Intelligence</h3>
-        </div>
-
-        <div class="case-card__body">
-
-            <div class="case-block">
+      <div class="case-item card reveal">
+        <button class="case-q" aria-expanded="false">
+          <div class="case-q__left">
+            <img src="assets/images/projects/Screenshot 2026-07-22 140454.png" alt="" class="case-q__img">
+            <div class="case-q__text">
+              <h3>AI Call Recording &amp; Lead Intelligence</h3>
+              <span class="case-q__tag">AI &amp; Mobile Integration</span>
+            </div>
+          </div>
+          <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="case-a">
+          <div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block">
                 <h4>Problem</h4>
-                <p>
-                    After leads were generated, sales executives contacted prospects using
-                    their mobile devices. Call recordings remained isolated from the CRM,
-                    making it difficult to associate conversations with the correct leads,
-                    review customer interactions, monitor call durations, or evaluate
-                    follow-up quality.
-                </p>
-            </div>
-
-            <div class="case-block">
+                <p>Call recordings made on mobile devices stayed isolated from the CRM, making it hard to associate conversations with the right lead or evaluate follow-up quality.</p>
+              </div>
+              <div class="case-block">
                 <h4>Solution</h4>
-                <p>
-                    Developed a dedicated Android application integrated with a Laravel REST
-                    API to automatically upload call recordings to the server after each
-                    customer call. The backend validates recordings, removes duplicates,
-                    matches calls with the correct CRM lead using mobile numbers, records
-                    accurate call duration and timestamps, generates AI-powered call
-                    summaries, and displays the complete call history within the lead's
-                    timeline for sales teams and managers.
-                </p>
+                <p>A dedicated Android app integrated with a Laravel REST API that uploads, deduplicates, and matches call recordings to leads, then generates AI-powered call summaries.</p>
+              </div>
             </div>
-
             <div class="case-tech">
-                <span>Laravel</span>
-                <span>Android</span>
-                <span>REST API</span>
-                <span>MySQL</span>
-                <span>AI Integration</span>
-                <span>Speech-to-Text</span>
-                <span>Call Recording</span>
-                <span>Lead Matching</span>
+              <span>Laravel</span><span>Android</span><span>REST API</span><span>MySQL</span>
+              <span>AI Integration</span><span>Speech-to-Text</span><span>Lead Matching</span>
             </div>
-
-            <div class="case-block case-block--result">
-                <h4>Business Result</h4>
-                <p>
-                    Automated the entire call management workflow by synchronizing mobile
-                    call recordings with the CRM, eliminating duplicate records, accurately
-                    linking conversations to the corresponding leads, generating AI-powered
-                    summaries, and providing managers with searchable call history,
-                    performance insights, and complete visibility into customer
-                    communications.
-                </p>
+            <div class="case-impact">
+              <h4>Business Impact</h4>
+              <p>Automated call management by syncing mobile recordings with the CRM, linking conversations to leads and giving managers searchable call history and insights.</p>
             </div>
-
+          </div>
         </div>
+      </div>
 
-    </div>
-</div>
+    </div><!-- /.case-list -->
 
+    <!-- View All Button -->
+    <div class="case-viewmore reveal">
+      <button class="case-viewmore__btn" id="cs-open" aria-label="View all case studies">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        View All Case Studies
+        <span class="case-viewmore__count">7 projects</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
     </div>
+
   </div>
 </section>
 
@@ -1902,7 +2128,7 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>How I Work</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">Development</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">process</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">process</span>
       </h2>
       <p class="section__sub reveal">A clear, communicative process from first call to post-launch support.</p>
     </div>
@@ -1950,7 +2176,7 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>Why Work With Me</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">Built for business,</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">not just code</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">not just code</span>
       </h2>
     </div>
     <div class="why-grid">
@@ -2010,7 +2236,7 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>Client Feedback</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">What clients and</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">managers say</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">managers say</span>
       </h2>
       <p class="section__sub reveal">This section will feature direct client feedback, manager reviews, and LinkedIn recommendations as projects wrap up. Nothing here is invented — check back as new feedback comes in.</p>
     </div>
@@ -2034,7 +2260,7 @@ p{margin:0;}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1.5 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg>
         </div>
         <h3>LinkedIn Recommendations</h3>
-        <p><a href="https://www.linkedin.com/in/anandhu-a-s-b002a5232" style="color:var(--blue-mid);border-bottom:1px solid var(--border-2);">Visit my LinkedIn profile</a> for recommendations and endorsements as they're added.</p>
+        <p><a href="https://www.linkedin.com/in/anandhu-a-s-b002a5232" style="color:var(--blue);border-bottom:1px solid var(--border-2);">Visit my LinkedIn profile</a> for recommendations and endorsements as they're added.</p>
       </div>
     </div>
   </div>
@@ -2049,7 +2275,7 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>FAQ</p>
       <h2 class="tr" style="font-size:clamp(2rem,4vw,3rem);">
         <span class="tr__w">Frequently asked</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">questions</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">questions</span>
       </h2>
     </div>
     <div class="faq-list">
@@ -2102,23 +2328,24 @@ p{margin:0;}
       <p class="eyebrow reveal"><span class="eyebrow__line"></span>Contact</p>
       <h2 class="tr" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">
         <span class="tr__w">Let's build something</span>
-        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#3b82f6,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">worth shipping</span>
+        <span class="tr__w" style="transition-delay:60ms;background:linear-gradient(135deg,#2563eb,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">worth shipping</span>
       </h2>
       <p class="reveal">Have a CRM, ERP, or automation project to scope, a role to fill, or a system that needs modernizing? I'm selective about projects — which means I give each one my full focus. I typically reply within 24 hours.</p>
       <a href="mailto:anandhusanthosh443@gmail.com" class="contact__email reveal">anandhusanthosh443@gmail.com</a>
-      <a href="https://wa.me/919746327402" class="contact__link reveal" target="_blank">
+      <a href="https://wa.me/919746327402" class="contact__link contact__link--wa reveal" target="_blank">
         <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.4 0 0 5.4 0 12.04c0 2.12.55 4.18 1.6 6L0 24l6.13-1.57a11.98 11.98 0 0 0 5.91 1.51h.01C18.68 23.94 24 18.62 24 12.04c0-3.22-1.25-6.25-3.48-8.56zM12.05 21.9h-.01a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.64.93.97-3.55-.24-.37a9.88 9.88 0 0 1-1.52-5.28C2.21 6.58 6.59 2.2 12.04 2.2c2.64 0 5.12 1.03 6.99 2.9a9.81 9.81 0 0 1 2.89 6.94c0 5.45-4.43 9.86-9.87 9.86zm5.42-7.37c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.69.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
         +91 97463 27402
       </a>
-      <a href="tel:+919746327402" class="contact__link reveal">
+      <a href="tel:+919746327402" class="contact__link contact__link--phone reveal">
         <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.15a2 2 0 0 1 2.11-.45c.84.3 1.71.51 2.6.63A2 2 0 0 1 22 16.92z"/></svg>
         +91 97463 27402
       </a>
       <ul class="socials reveal">
-        <li><a href="https://github.com/Anandhu1028" class="social magnetic" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4-1 4-4.5a3.5 3.5 0 0 0-1-2.5 3.3 3.3 0 0 0-.1-2.5s-1.2-.4-2.9 1a9.9 9.9 0 0 0-5 0c-1.7-1.4-2.9-1-2.9-1a3.3 3.3 0 0 0-.1 2.5 3.5 3.5 0 0 0-1 2.5c0 3.4 2 4.3 4 4.5-.6.6-.6 1.2-.5 2V21"/></svg></a></li>
-        <li><a href="https://www.linkedin.com/in/anandhu-a-s-b002a5232" class="social magnetic" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1.5 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg></a></li>
-        <li><a href="#" class="social magnetic" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a></li>
-        <li><a href="#" class="social magnetic" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4 4 20"/></svg></a></li>
+        <li><a href="https://wa.me/919746327402" class="social social--wa magnetic" aria-label="WhatsApp" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.4 0 0 5.4 0 12.04c0 2.12.55 4.18 1.6 6L0 24l6.13-1.57a11.98 11.98 0 0 0 5.91 1.51h.01C18.68 23.94 24 18.62 24 12.04c0-3.22-1.25-6.25-3.48-8.56zM12.05 21.9h-.01a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.64.93.97-3.55-.24-.37a9.88 9.88 0 0 1-1.52-5.28C2.21 6.58 6.59 2.2 12.04 2.2c2.64 0 5.12 1.03 6.99 2.9a9.81 9.81 0 0 1 2.89 6.94c0 5.45-4.43 9.86-9.87 9.86zm5.42-7.37c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.69.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg></a></li>
+        <li><a href="https://github.com/Anandhu1028" class="social social--github magnetic" aria-label="GitHub" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4-1 4-4.5a3.5 3.5 0 0 0-1-2.5 3.3 3.3 0 0 0-.1-2.5s-1.2-.4-2.9 1a9.9 9.9 0 0 0-5 0c-1.7-1.4-2.9-1-2.9-1a3.3 3.3 0 0 0-.1 2.5 3.5 3.5 0 0 0-1 2.5c0 3.4 2 4.3 4 4.5-.6.6-.6 1.2-.5 2V21"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/anandhu-a-s-b002a5232" class="social social--linkedin magnetic" aria-label="LinkedIn" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-3.2c0-1.5 1-2.3 2.2-2.3 1.2 0 1.8.9 1.8 2.3V16"/></svg></a></li>
+        <li><a href="#" class="social social--instagram magnetic" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a></li>
+        <li><a href="#" class="social social--x magnetic" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4 4 20"/></svg></a></li>
       </ul>
     </div>
 
@@ -2128,7 +2355,7 @@ p{margin:0;}
         <div class="field"><label for="fe">Email Address</label><input type="email" id="fe" name="email" required placeholder="you@company.com"></div>
         <div class="field"><label for="fc">Company</label><input type="text" id="fc" name="company" placeholder="Your company"></div>
       </div>
-      
+
       <div class="field"><label for="fm">Message</label><textarea id="fm" name="message" rows="4" required placeholder="Tell me about the system you need — CRM, ERP, automation, or something else..."></textarea></div>
       <button type="submit" class="btn btn--primary magnetic" id="sb">
         <span class="sl">Request a Quote</span>
@@ -2247,14 +2474,6 @@ if(!touch){
   });
 }
 
-/* PROJECT TILT */
-if(!touch&&!rm){
-  document.querySelectorAll('.proj').forEach(function(c){
-    c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(1100px) rotateX('+(py*-3)+'deg) rotateY('+(px*3)+'deg) scale(1.012)';});
-    c.addEventListener('mouseleave',function(){c.style.transform='perspective(1100px) rotateX(0) rotateY(0) scale(1)';});
-  });
-}
-
 /* CURSOR GLOW */
 var cg=document.getElementById('cg');
 if(!touch&&cg){
@@ -2284,12 +2503,9 @@ if(canvas){
     'return <Component />;',
     'interface User { id: number }',
     'type Props = { name: string }',
-    'const router = express();',
-    'module.exports = routes;',
     'Promise.all([...tasks])',
     'arr.map(x => x * 2)',
     'async function getData()',
-    'throw new Error(\'msg\');',
     '<?php echo $message;',
     'public function boot()',
     'Route::get(\'/\', fn() =>',
@@ -2299,43 +2515,27 @@ if(canvas){
     'class Controller extends',
     '@foreach($items as $item)',
     '$user = User::find($id);',
-    'Artisan::call(\'migrate\');',
     'use App\\Models\\User;',
     '$request->validated()',
     'SELECT * FROM users',
-    'JOIN orders ON id =',
     'WHERE status = \'active\'',
-    'INSERT INTO logs ()',
-    'UPDATE users SET role',
-    'CREATE TABLE sessions',
     'git commit -m \'feat\'',
     'npm run dev --watch',
-    'docker-compose up -d',
-    'kubectl apply -f app.yaml',
-    'ssh root@server.com',
-    'npm install --save-dev',
-    'git push origin main',
-    'chmod +x deploy.sh',
     'display: flex;',
     'grid-template-columns:',
-    '<div className="hero">',
     'border-radius: 12px;',
-    'transform: translateY',
-    '@keyframes fadeIn {',
     'def process(data):',
-    'import pandas as pd',
-    'if __name__ == \'main\'',
-    'return jsonify(result)'
+    'if __name__ == \'main\''
   ];
 
   var PALETTES=[
-    [59,130,246],
-    [129,140,248],
-    [167,139,250],
-    [96,165,250],
-    [52,211,153],
-    [251,191,36],
-    [248,113,113]
+    [37,99,235],
+    [99,102,241],
+    [124,58,237],
+    [14,165,233],
+    [16,185,129],
+    [217,119,6],
+    [220,38,38]
   ];
 
   var particles=[];
@@ -2382,7 +2582,7 @@ if(canvas){
       var drawY=p.y+bob;
 
       var sz=p.baseSize*(0.5+influence*1.3);
-      var alpha=0.055+0.03*Math.sin(t*.35+p.phase)+inf2*0.85;
+      var alpha=0.035+0.018*Math.sin(t*.35+p.phase)+inf2*0.75;
 
       var pr=Math.round(p.pal[0]*(0.4+influence*0.6));
       var pg=Math.round(p.pal[1]*(0.4+influence*0.6));
@@ -2396,8 +2596,8 @@ if(canvas){
       ctx2.textBaseline='middle';
 
       if(influence>0.15){
-        ctx2.shadowColor='rgba('+p.pal[0]+','+p.pal[1]+','+p.pal[2]+','+(influence*0.9)+')';
-        ctx2.shadowBlur=6+influence*16;
+        ctx2.shadowColor='rgba('+p.pal[0]+','+p.pal[1]+','+p.pal[2]+','+(influence*0.6)+')';
+        ctx2.shadowBlur=4+influence*10;
       } else {
         ctx2.shadowBlur=0;
       }
@@ -2431,14 +2631,8 @@ var skills=['Laravel','PHP','MySQL','JavaScript','Bootstrap','REST APIs','AJAX',
 var mt=document.getElementById('mt');
 if(mt){var h='';[skills,skills].forEach(function(arr){arr.forEach(function(s){h+='<div class="marquee-item"><b></b>'+s+'</div>';});});mt.innerHTML=h;}
 
-/* SMOOTH SCROLL */
-if(!touch&&!rm){
-  var cur=window.scrollY,tgt=window.scrollY,tick=false;
-  function ms2(){return document.documentElement.scrollHeight-window.innerHeight;}
-  function lp(){cur+=(tgt-cur)*.085;if(Math.abs(tgt-cur)<.4)cur=tgt;window.scrollTo(0,cur);if(cur!==tgt)requestAnimationFrame(lp);else tick=false;}
-  window.addEventListener('wheel',function(e){tgt+=e.deltaY;tgt=Math.max(0,Math.min(tgt,ms2()));if(!tick){tick=true;cur=window.scrollY;requestAnimationFrame(lp);}e.preventDefault();},{passive:false});
-  window.addEventListener('scroll',function(){if(!tick){cur=window.scrollY;tgt=window.scrollY;}},{passive:true});
-}
+/* Native scroll-behavior:smooth is set on html — no JS wheel override needed */
+
 
 /* SKILL BARS ANIMATION */
 if('IntersectionObserver' in window){
@@ -2461,22 +2655,37 @@ if('IntersectionObserver' in window){
   if(sb2) skillObs.observe(sb2);
 }
 
-/* FAQ ACCORDION */
-document.querySelectorAll('.faq-item').forEach(function(item){
-  var btn=item.querySelector('.faq-q');
-  var ans=item.querySelector('.faq-a');
-  btn.addEventListener('click',function(){
-    var open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(function(o){
-      if(o!==item){o.classList.remove('open');o.querySelector('.faq-q').setAttribute('aria-expanded','false');o.querySelector('.faq-a').style.maxHeight=null;}
-    });
-    if(open){
-      item.classList.remove('open');btn.setAttribute('aria-expanded','false');ans.style.maxHeight=null;
-    } else {
-      item.classList.add('open');btn.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';
+/* Generic accordion helper (used by FAQ and Case Studies) */
+function initAccordion(itemSelector, qSelector, aSelector, singleOpen){
+  var items=document.querySelectorAll(itemSelector);
+  items.forEach(function(item){
+    var btn=item.querySelector(qSelector);
+    var ans=item.querySelector(aSelector);
+    if(!btn||!ans) return;
+    if(item.classList.contains('open')){
+      ans.style.maxHeight=ans.scrollHeight+'px';
     }
+    btn.addEventListener('click',function(){
+      var open=item.classList.contains('open');
+      if(singleOpen){
+        items.forEach(function(o){
+          if(o!==item && o.classList.contains('open')){
+            o.classList.remove('open');
+            o.querySelector(qSelector).setAttribute('aria-expanded','false');
+            o.querySelector(aSelector).style.maxHeight=null;
+          }
+        });
+      }
+      if(open){
+        item.classList.remove('open');btn.setAttribute('aria-expanded','false');ans.style.maxHeight=null;
+      } else {
+        item.classList.add('open');btn.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';
+      }
+    });
   });
-});
+}
+initAccordion('.faq-item','.faq-q','.faq-a',true);
+initAccordion('.case-item','.case-q','.case-a',false);
 
 /* BACK TO TOP */
 document.getElementById('btt').addEventListener('click',function(){window.scrollTo({top:0,behavior:rm?'auto':'smooth'});});
@@ -2494,6 +2703,268 @@ cf.addEventListener('submit',function(e){
   setTimeout(function(){cf.querySelectorAll('.field,.field-row').forEach(function(f){f.style.display='none';});sb.style.display='none';fok.classList.add('show');},1100);
 });
 
+})();
+</script>
+
+<!-- ===================================================
+     FULL-PAGE CASE STUDIES PANEL (no new file)
+===================================================== -->
+<div class="cs-panel-backdrop" id="cs-backdrop" aria-hidden="true"></div>
+
+<div class="cs-panel" id="cs-panel" role="dialog" aria-modal="true" aria-label="All Case Studies">
+
+  <!-- Header -->
+  <div class="cs-panel__header">
+    <div class="cs-panel__header-inner">
+      <div class="cs-panel__title">
+        <span style="color:var(--blue-mid);font-weight:700;">&lt;</span>
+        Case <span class="cs-panel__title-accent">Studies</span>
+        <span style="color:var(--blue-mid);font-weight:700;">/&gt;</span>
+        <span class="cs-panel__badge">All 7 Projects</span>
+      </div>
+      <button class="cs-panel__close" id="cs-close" aria-label="Close case studies">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="cs-panel__body">
+    <div class="container">
+
+      <div class="cs-panel__intro">
+        <p class="eyebrow"><span class="eyebrow__line"></span>Deep Dives</p>
+        <h2>Problems solved, <span>results delivered</span></h2>
+        <p>A detailed look at the challenge, the build, and the measurable outcome for every project. Click any row to expand.</p>
+      </div>
+
+      <div class="cs-panel__grid" id="cs-panel-grid">
+
+        <!-- 1 — Lead Management CRM -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/Screenshot 2026-07-22 140454.png" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>Lead Management CRM</h3><span class="case-q__tag">CRM</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>Sales teams tracked leads across spreadsheets and WhatsApp, with no clear ownership, follow-up history, or conversion visibility — resulting in slow responses and lost deals.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>A Laravel CRM covering the full lead lifecycle, with rule-based stage progression, automatic call recording, AI-generated call summaries, and automatic reassignment of stale leads.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span><span>AJAX</span><span>REST API</span><span>AI Call Summary</span><span>RBAC</span></div>
+            <div class="case-features"><h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul><li>Lead creation and assignment to executives</li><li>Rule-based stage progression (hot, warm, cold)</li><li>Full activity timeline and follow-up tracking</li><li>Automatic call recording integration</li></ul>
+                <ul><li>AI-powered call summarization</li><li>Automatic lead reassignment after 15 days</li><li>Role-based permissions</li><li>Real-time dashboards and reports</li></ul>
+              </div>
+            </div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Centralized the sales workflow, cut manual follow-up work, and gave managers transparent, real-time visibility into every executive's pipeline.</p></div>
+          </div></div>
+        </div>
+
+        <!-- 2 — Clinic Management -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/clinic.jpg" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>Clinic Management &amp; Patient Portal</h3><span class="case-q__tag">Healthcare CRM</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>Clinics managed appointments with phone calls and paper registers, creating scheduling conflicts, lost patient histories, and delayed billing.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>A Laravel-based clinic system with doctor scheduling, patient records, billing, pharmacy, and a patient-facing portal for appointment booking and report access.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span><span>AJAX</span><span>WhatsApp API</span><span>RBAC</span></div>
+            <div class="case-features"><h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul><li>Doctor schedule and appointment management</li><li>Patient record and medical history tracking</li><li>Billing and invoice automation</li><li>Pharmacy and inventory management</li></ul>
+                <ul><li>WhatsApp appointment reminders</li><li>Patient portal for booking and reports</li><li>Role-based staff access</li><li>Dashboard analytics for clinic performance</li></ul>
+              </div>
+            </div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Eliminated scheduling conflicts, digitized patient records, and reduced billing errors while giving patients a self-service portal for appointments and reports.</p></div>
+          </div></div>
+        </div>
+
+        <!-- 3 — Multi-Branch Clinic ERP -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/clinic-erp.jpg" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>Multi-Branch Clinic ERP</h3><span class="case-q__tag">Healthcare ERP</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>A growing clinic chain needed centralized visibility across branches with consolidated reporting and doctor performance tracking that existing tools couldn't provide.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>An enterprise Laravel ERP extending the clinic platform with multi-branch management, cross-branch analytics, HR functions, and automated reporting.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span><span>AJAX</span><span>Chart.js</span><span>RBAC</span></div>
+            <div class="case-features"><h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul><li>Multi-branch centralized management</li><li>Cross-branch patient transfer</li><li>Doctor performance and revenue analytics</li><li>HR and payroll management</li></ul>
+                <ul><li>Consolidated billing and reports</li><li>Executive dashboards per branch</li><li>Automated alert system</li><li>Exportable business intelligence reports</li></ul>
+              </div>
+            </div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Gave clinic leadership a single dashboard to manage multiple branches with real-time revenue, performance, and patient flow data across the entire chain.</p></div>
+          </div></div>
+        </div>
+
+        <!-- 4 — Student ERP -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_16_24 AM.png" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>Student Management &amp; Admission ERP</h3><span class="case-q__tag">Education ERP</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>Admissions, records, documents, enrollments, and payments were managed across spreadsheets and disconnected systems, with duplicate records and delayed approvals.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>A complete Laravel Education ERP digitizing the full student lifecycle — registration, document verification, course management, payments, and automated invoice generation.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span><span>AJAX</span><span>DataTables</span><span>Chart.js</span><span>RBAC</span></div>
+            <div class="case-features"><h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul><li>Student registration and admission workflow</li><li>Automatic unique student Track ID generation</li><li>Document verification with waiver option</li><li>Branch and university management</li></ul>
+                <ul><li>Payment approval and rejection workflow</li><li>Automatic invoice and offer letter generation</li><li>Dynamic reports with customizable columns</li><li>Role-based user and permission management</li></ul>
+              </div>
+            </div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Replaced manual processes with a centralized ERP, automating admissions, payment approvals, and reporting while giving management real-time visibility into operations.</p></div>
+          </div></div>
+        </div>
+
+        <!-- 5 — Enterprise Education ERP -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_21_09 AM.png" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>Enterprise Education Management System</h3><span class="case-q__tag">Enterprise ERP</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>Large educational organizations needed centralized multi-branch management with detailed reporting, target tracking, and workflow automation existing systems couldn't provide.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>An enterprise-grade Laravel ERP extending the student management platform with advanced analytics, actual-vs-target tracking, task management, and workflow automation.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span><span>AJAX</span><span>DataTables</span><span>Chart.js</span><span>RBAC</span></div>
+            <div class="case-features"><h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul><li>Multi-branch and multi-university management</li><li>User-wise performance reports</li><li>Actual vs. target analytics</li><li>Dynamic report builder</li></ul>
+                <ul><li>Task management and assignment system</li><li>Workflow automation</li><li>Real-time executive dashboards</li><li>Excel export and business reports</li></ul>
+              </div>
+            </div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Enabled centralized management of multiple branches while improving reporting accuracy, target monitoring, and executive visibility into institutional performance.</p></div>
+          </div></div>
+        </div>
+
+        <!-- 6 — Construction ERP -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/ChatGPT Image Jul 24, 2026, 11_36_31 AM.png" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>Construction Management System</h3><span class="case-q__tag">ERP</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>Construction projects were managed through spreadsheets, calls, and manual reports, making it difficult to track progress, expenses, and profitability in real time.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>A Construction ERP covering the full project lifecycle — stage planning, GPS-verified attendance, expense management, client portal, and live site monitoring.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Bootstrap 5</span><span>AJAX</span><span>GPS Verification</span><span>Finance Dashboard</span></div>
+            <div class="case-features"><h4>Key Features</h4>
+              <div class="case-features__grid">
+                <ul><li>Project and stage management</li><li>GPS-based supervisor check-in and attendance</li><li>Expense and budget tracking</li><li>Client portal with live project status</li></ul>
+                <ul><li>Stage-based payment management</li><li>Profit and loss reporting</li><li>Live site monitoring</li><li>Automated alerts and notifications</li></ul>
+              </div>
+            </div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Centralized construction operations into a single platform, improving financial control, supervisor accountability, and client transparency.</p></div>
+          </div></div>
+        </div>
+
+        <!-- 7 — AI Call Recording -->
+        <div class="case-item card cs-pi">
+          <button class="case-q" aria-expanded="false">
+            <div class="case-q__left">
+              <img src="assets/images/projects/Screenshot 2026-07-22 140454.png" alt="" class="case-q__img">
+              <div class="case-q__text"><h3>AI Call Recording &amp; Lead Intelligence</h3><span class="case-q__tag">AI &amp; Mobile Integration</span></div>
+            </div>
+            <span class="case-q__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="case-a"><div class="case-a__inner">
+            <div class="case-cols">
+              <div class="case-block"><h4>Problem</h4><p>Call recordings made on mobile devices stayed isolated from the CRM, making it hard to associate conversations with the right lead or evaluate follow-up quality.</p></div>
+              <div class="case-block"><h4>Solution</h4><p>A dedicated Android app integrated with a Laravel REST API that uploads, deduplicates, and matches call recordings to leads, then generates AI-powered call summaries.</p></div>
+            </div>
+            <div class="case-tech"><span>Laravel</span><span>Android</span><span>REST API</span><span>MySQL</span><span>AI Integration</span><span>Speech-to-Text</span><span>Lead Matching</span></div>
+            <div class="case-impact"><h4>Business Impact</h4><p>Automated call management by syncing mobile recordings with the CRM, linking conversations to leads and giving managers searchable call history and insights.</p></div>
+          </div></div>
+        </div>
+
+      </div><!-- /.cs-panel__grid -->
+    </div><!-- /.container -->
+  </div><!-- /.cs-panel__body -->
+</div><!-- /.cs-panel -->
+
+<script>
+/* ============================================================
+   CASE STUDIES PANEL — open / close / accordion
+============================================================ */
+(function(){
+  var panel    = document.getElementById('cs-panel');
+  var backdrop = document.getElementById('cs-backdrop');
+  var openBtn  = document.getElementById('cs-open');
+  var closeBtn = document.getElementById('cs-close');
+  if(!panel||!openBtn||!closeBtn) return;
+
+  function openPanel(){
+    panel.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePanel(){
+    panel.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && panel.classList.contains('open')) closePanel();
+  });
+
+  /* Accordion inside panel */
+  var pItems = document.querySelectorAll('#cs-panel-grid .case-item');
+  pItems.forEach(function(item){
+    var btn = item.querySelector('.case-q');
+    var ans = item.querySelector('.case-a');
+    if(!btn||!ans) return;
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      pItems.forEach(function(o){
+        o.classList.remove('open');
+        var ob = o.querySelector('.case-q');
+        var oa = o.querySelector('.case-a');
+        if(ob) ob.setAttribute('aria-expanded','false');
+        if(oa) oa.style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
 })();
 </script>
 </body>
